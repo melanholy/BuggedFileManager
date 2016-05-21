@@ -1,10 +1,13 @@
 ﻿using System;
+using filemanager.Infrastructure;
 
 namespace filemanager.Domain
 {
-    class FtpFile : ITextFile
+    public class FtpFile : ITextFile
     {
-        public string Name { get; set; }
+        public MyPath Path { get; }
+        public string Extension { get; }
+
         public void Create()
         {
             throw new NotImplementedException();
@@ -14,7 +17,5 @@ namespace filemanager.Domain
         {
             throw new NotImplementedException();
         }
-
-        public string Extension { get; }
     }
 }

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using filemanager.Infrastructure;
 
 namespace filemanager.Domain
 {
-    class FtpFolder : IFolder
+    public class FtpFolder : IFolder
     {
         public string Name { get; set; }
+        public MyPath Path { get; }
+
         public void Create()
         {
             throw new NotImplementedException();

@@ -9,3 +9,8 @@ D:\Учеба\fm\API\bin\Debug\API.pdb
 D:\Учеба\fm\API\obj\Debug\API.csprojResolveAssemblyReference.cache
 D:\Учеба\fm\API\obj\Debug\API.dll
 D:\Учеба\fm\API\obj\Debug\API.pdb
+D:\Учеба\fm\petyazharitvasyu\API\bin\Debug\API.dll
+D:\Учеба\fm\petyazharitvasyu\API\bin\Debug\API.pdb
+D:\Учеба\fm\petyazharitvasyu\API\obj\Debug\API.csprojResolveAssemblyReference.cache
+D:\Учеба\fm\petyazharitvasyu\API\obj\Debug\API.dll
+D:\Учеба\fm\petyazharitvasyu\API\obj\Debug\API.pdb

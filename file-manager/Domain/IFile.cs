@@ -1,8 +1,10 @@
-﻿namespace filemanager.Domain
+﻿using filemanager.Infrastructure;
+
+namespace filemanager.Domain
 {
     public interface IFile
     {
-        string Name { get; set; }
+        MyPath Path { get; }
         void Create();
         void Delete();
     }

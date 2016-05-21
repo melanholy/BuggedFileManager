@@ -7,8 +7,7 @@ namespace filemanager.Domain
 {
     public class WinFolder : IFolder
     {
-        public string Name { get; set; }
-        public MyPath Path;
+        public MyPath Path { get; }
 
         public IEnumerable<IFile> EnumerateFiles()
         {
@@ -22,9 +21,8 @@ namespace filemanager.Domain
         public WinFolder(MyPath path)
         {
             Path = path;
-            Name = path.GetFileName();
         }
-
+        
         public void Create()
         {
             if (Directory.Exists(Path.Path))

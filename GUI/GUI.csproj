@@ -36,13 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -112,6 +107,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\API\API.csproj">
+      <Project>{D62B7E22-734D-45F1-8170-6C2AE5756B1F}</Project>
+      <Name>API</Name>
+    </ProjectReference>
     <ProjectReference Include="..\file-manager\file-manager.csproj">
       <Project>{dce48694-2565-4504-b01f-32e6423bf0ca}</Project>
       <Name>file-manager</Name>

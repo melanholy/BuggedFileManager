@@ -3,16 +3,14 @@ using System.Windows.Media.Imaging;
 
 namespace GUI
 {
-    /// <summary>
-    /// Логика взаимодействия для FileView.xaml
-    /// </summary>
     public partial class FileView
     {
         public FileView(BitmapImage image, string name)
         {
             InitializeComponent();
-            view.Source = image;
-            filename.Text = name;
+
+            Image.Source = image;
+            Filename.Text = name;
         }
 
         public BitmapImage MyImageSource
@@ -22,7 +20,6 @@ namespace GUI
         }
 
         public static readonly DependencyProperty MyImageSourceProperty =
-            DependencyProperty.Register("MyImageSource",
-                typeof(BitmapImage), typeof(FileView));
+            DependencyProperty.Register("MyImageSource", typeof(BitmapImage), typeof(FileView));
     }
 }

@@ -5,7 +5,7 @@ namespace filemanager.Domain
 {
     public class WinFile : ITextFile
     {
-        public MyPath Path;
+        public MyPath Path { get; }
         public string Name
         {
             get { return Path.GetFileName(); }
@@ -18,7 +18,7 @@ namespace filemanager.Domain
         {
             Path = path;
         }
-
+        
         public void Create()
         {
             if (File.Exists(Path.Path))

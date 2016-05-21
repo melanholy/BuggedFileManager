@@ -1,33 +1,57 @@
 ﻿using System.Linq;
+using System.Windows;
+using filemanager.Application;
 using filemanager.Domain;
-using GUI1;
+using filemanager.Infrastructure;
 
 namespace GUI
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow
     {
         private Disk Active;
-        public MainWindow()
+
+        public MainWindow(PluginRepo repo)
         {
             InitializeComponent();
             
-            var folders = WinFolder.GetRootFolders();
-            foreach (var disk in folders.Select(folder => new Disk(folder.Path) { Header = folder.Name }))
+            var folders = WinFolder.GetRootFolders().ToArray();
+            foreach (var disk in folders.Select(folder => new Disk(folder) { Header = folder.Path.GetFileName() }))
                 DiskTabs.Items.Add(disk);
-            
-            Active.PathChanged += path => textBox.Text = path.Path;
+
+            Active = (Disk)DiskTabs.Items[0];
+            Active.PathChanged += SetPathText;
+            SetPathText(Active.Current);
             DiskTabs.SelectionChanged += (sender, args) => ChangeActiveManager();
             DiskTabs.SelectedIndex = 0;
         }
         
         private void ChangeActiveManager()
         {
+            BackButton.Click -= BackButtonOnClick;
+            ForwardButton.Click -= ForwardButtonOnClick;
+            Active.PathChanged -= SetPathText;
+
             Active = (Disk)DiskTabs.SelectedItem;
-            BackButton.Click += (sender, args) => Active.GoBackward();
-            ForwardButton.Click += (sender, args) => Active.GoForward();
+
+            SetPathText(Active.Current);
+            Active.PathChanged += SetPathText;
+            BackButton.Click += BackButtonOnClick;
+            ForwardButton.Click += ForwardButtonOnClick;
+        }
+
+        private void SetPathText(MyPath path)
+        {
+            textBox.Text = path.Path;
+        }
+
+        private void ForwardButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Active.GoForward();
+        }
+
+        private void BackButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Active.GoBackward();
         }
     }
 }

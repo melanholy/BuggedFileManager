@@ -8,6 +8,7 @@ namespace filemanager.Infrastructure
 
 		public MyPath (string path)
 		{
+		    path = path.Replace("\\", "/");
             if (!Helpers.IsCorrectMyPath(path))
                 throw new ArgumentException();
 			Path = path;

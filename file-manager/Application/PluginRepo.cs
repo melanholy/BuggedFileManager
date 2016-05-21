@@ -5,14 +5,10 @@ using System.Reflection;
 
 namespace filemanager.Application
 {
-    internal class PluginRepo
+    public class PluginRepo
     {
         private readonly Dictionary<Type, Dictionary<string, object>> Plugins;
         private readonly Type[] KnownPlugins;
-        //    typeof(IFileOpener),
-        //    typeof(IFileIcon),
-        //    typeof(IMenuItem)
-        //};
 
         public PluginRepo(Type[] knownPlugins)
         {

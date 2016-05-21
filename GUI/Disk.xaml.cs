@@ -8,32 +8,33 @@ using filemanager.Infrastructure;
 
 namespace GUI
 {
-    /// <summary>
-    /// Логика взаимодействия для Disk.xaml
-    /// </summary>
     public partial class Disk
     {
-        public readonly HistoryKeeper History;
-        private readonly BitmapImage FolderIcon = new BitmapImage(new Uri(@"folder.bmp"));
-        private readonly BitmapImage FileIcon = new BitmapImage(new Uri(@"file.bmp"));
+        public MyPath Current;
+        private readonly HistoryKeeper History;
+        private readonly BitmapImage FolderIcon = new BitmapImage(new Uri(@"folder.bmp", UriKind.Relative));
+        private readonly BitmapImage FileIcon = new BitmapImage(new Uri(@"file.bmp", UriKind.Relative));
         public event Action<MyPath> PathChanged;
         
-        public Disk(MyPath path)
+        public Disk(IFolder root)
         {
             InitializeComponent();
 
-            History = new HistoryKeeper(path);
-            PathChanged?.Invoke(path);
+            History = new HistoryKeeper(root.Path);
+            Current = root.Path;
+            PutFilesOnPanel(root.EnumerateFiles());
         }
 
         public void GoBackward()
         {
-            History.GoBack();
+            Current = History.GoBack();
+            PathChanged?.Invoke(Current);
         }
 
         public void GoForward()
         {
-            History.GoForward();
+            Current = History.GoForward();
+            PathChanged?.Invoke(Current);
         }
 
         private void WrapPanelOnMouseUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
@@ -77,7 +78,7 @@ namespace GUI
                     icon = FolderIcon;
                     contextMenu = CreateFolderContextMenu((IFolder)file);
                 }
-                var folderView = new FileView(icon, file.Name);
+                var folderView = new FileView(icon, file.Path.GetFileName());
                 folderView.MouseUp += (sender, args) =>
                 {
                     if (args.ChangedButton == MouseButton.Right)

@@ -15,23 +15,29 @@ namespace filemanager.Infrastructure
             HistoryFwd = new Stack<MyPath>();
 	    }
 
-		public void GoToFolder(string folder)
+		public MyPath GoToFolder(string folder)
 		{
-            HistoryBck.Push(Current);
-            Current = Current.Join(folder);
             HistoryFwd.Clear();
-        }
+            HistoryBck.Push(Current);
 
-	    public void GoBack()
+            Current = Current.Join(folder);
+		    return Current;
+		}
+
+	    public MyPath GoBack()
 	    {
             HistoryFwd.Push(Current);
+
             Current = HistoryBck.Pop();
+	        return Current;
 	    }
 
-	    public void GoForward()
+	    public MyPath GoForward()
 	    {
             HistoryBck.Push(Current);
+
             Current = HistoryFwd.Pop();
-        }
+	        return Current;
+	    }
 	}
 }
