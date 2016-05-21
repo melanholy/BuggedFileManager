@@ -19,10 +19,10 @@ namespace GUI
             var folders = WinFolder.GetRootFolders();
             foreach (var disk in folders.Select(folder => new Disk(folder.Path) { Header = folder.Name }))
                 DiskTabs.Items.Add(disk);
-            DiskTabs.SelectedIndex = 0;
-            ChangeActiveManager();
+            
             Active.PathChanged += path => textBox.Text = path.Path;
             DiskTabs.SelectionChanged += (sender, args) => ChangeActiveManager();
+            DiskTabs.SelectedIndex = 0;
         }
         
         private void ChangeActiveManager()

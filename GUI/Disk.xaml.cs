@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using filemanager.Application;
 using filemanager.Domain;
 using filemanager.Infrastructure;
 using GUI;
 
-namespace GUI1
+namespace GUI
 {
     /// <summary>
     /// Логика взаимодействия для Disk.xaml
@@ -21,7 +19,7 @@ namespace GUI1
         private readonly BitmapImage FileIcon = new BitmapImage(new Uri(@"file.bmp"));
         public event Action<MyPath> PathChanged;
         
-        public Disk(MyPath path, IFileManager fm)
+        public Disk(MyPath path)
         {
             InitializeComponent();
 
@@ -70,15 +68,15 @@ namespace GUI1
             {
                 BitmapImage icon = null;
                 ContextMenu contextMenu = null;
-                if (file is WinFile)
+                if (file is ITextFile)
                 {
                     icon = FileIcon;
-                    contextMenu = CreateFileContextMenu(file);
+                    contextMenu = CreateFileContextMenu((ITextFile)file);
                 }
-                if (file is WinFolder)
+                if (file is IFolder)
                 {
                     icon = FolderIcon;
-                    contextMenu = CreateFolderContextMenu(file);
+                    contextMenu = CreateFolderContextMenu((IFolder)file);
                 }
                 var folderView = new FileView(icon, file.Name);
                 folderView.MouseUp += (sender, args) =>
@@ -103,7 +101,6 @@ namespace GUI1
             if (file is IFolder)
             {
                 var folder = (IFolder)file;
-                History.GoToFolder(folder);
             }
         }
     }

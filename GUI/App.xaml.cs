@@ -1,11 +1,11 @@
 ﻿using System.Windows;
 
-namespace GUI1
+namespace GUI
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         
     }

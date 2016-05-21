@@ -4,3 +4,8 @@ C:\Users\Дмитрий\Downloads\file-manager\file-manager\API\bin\Debug\API.pd
 C:\Users\Дмитрий\Downloads\file-manager\file-manager\API\obj\Debug\API.csprojResolveAssemblyReference.cache
 C:\Users\Дмитрий\Downloads\file-manager\file-manager\API\obj\Debug\API.dll
 C:\Users\Дмитрий\Downloads\file-manager\file-manager\API\obj\Debug\API.pdb
+D:\Учеба\fm\API\bin\Debug\API.dll
+D:\Учеба\fm\API\bin\Debug\API.pdb
+D:\Учеба\fm\API\obj\Debug\API.csprojResolveAssemblyReference.cache
+D:\Учеба\fm\API\obj\Debug\API.dll
+D:\Учеба\fm\API\obj\Debug\API.pdb
