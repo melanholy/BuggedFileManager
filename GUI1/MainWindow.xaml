@@ -1,0 +1,29 @@
+﻿<Window x:Class="GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TreeView Grid.Row="1" Grid.Column="0" x:Name="treeView" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100"/>
+        <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button x:Name="BackButton" Width="30" Content="◀" />
+            <Button x:Name="ForwardButton" Width="30" Content="▶"/>
+            <Button x:Name="UpButton" Width="30" Content="▲"/>
+        </WrapPanel>
+        <DockPanel Grid.Row="1" Grid.Column="1" LastChildFill="True">
+            <TextBox DockPanel.Dock="Top" x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+            <TabControl DockPanel.Dock="Bottom" Name="DiskTabs"></TabControl>
+        </DockPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,11 @@
+D:\Учеба\file-manager\file-manager\obj\x86\Debug\file-manager.csprojResolveAssemblyReference.cache
+C:\Users\Дмитрий\Downloads\file-manager\file-manager\file-manager\obj\x86\Debug\file-manager.csprojResolveAssemblyReference.cache
+C:\Users\Дмитрий\Downloads\file-manager\file-manager\file-manager\bin\Debug\file-manager.dll
+C:\Users\Дмитрий\Downloads\file-manager\file-manager\file-manager\bin\Debug\file-manager.pdb
+C:\Users\Дмитрий\Downloads\file-manager\file-manager\file-manager\obj\x86\Debug\file-manager.dll
+C:\Users\Дмитрий\Downloads\file-manager\file-manager\file-manager\obj\x86\Debug\file-manager.pdb
+D:\Учеба\fm\file-manager\bin\Debug\file-manager.dll
+D:\Учеба\fm\file-manager\bin\Debug\file-manager.pdb
+D:\Учеба\fm\file-manager\obj\x86\Debug\file-manager.csprojResolveAssemblyReference.cache
+D:\Учеба\fm\file-manager\obj\x86\Debug\file-manager.dll
+D:\Учеба\fm\file-manager\obj\x86\Debug\file-manager.pdb
