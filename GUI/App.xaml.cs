@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace GUI
+﻿namespace GUI
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml

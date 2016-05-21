@@ -11,7 +11,6 @@ namespace filemanager.Infrastructure
             if (!Helpers.IsCorrectMyPath(path))
                 throw new ArgumentException();
 			Path = path;
-
 		}
 
 		public MyPath Join(string file)

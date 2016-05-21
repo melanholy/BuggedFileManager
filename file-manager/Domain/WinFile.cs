@@ -1,4 +1,5 @@
 ﻿using filemanager.Infrastructure;
+using System.IO;
 
 namespace filemanager.Domain
 {
@@ -20,14 +21,14 @@ namespace filemanager.Domain
 
         public void Create()
         {
-            if (System.IO.File.Exists(Path.Path))
+            if (File.Exists(Path.Path))
                 throw new FileAlreadyExistException();
-            System.IO.File.Create(Path.Path);
+            File.Create(Path.Path);
         }
 
         public void Delete()
         {
-            System.IO.File.Delete(Path.Path);
+            File.Delete(Path.Path);
         }
     }
 }
