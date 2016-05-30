@@ -9,6 +9,11 @@ namespace filemanager.Domain
     {
         public MyPath Path { get; }
 
+        public WinFolder(MyPath path)
+        {
+            Path = path;
+        }
+
         public IEnumerable<IFile> EnumerateFiles()
         {
             var files = Directory.EnumerateFiles(Path.Path);
@@ -18,26 +23,28 @@ namespace filemanager.Domain
                 .Union(dirs.Select(x => new WinFolder(new MyPath(x))));
         }
 
-        public WinFolder(MyPath path)
-        {
-            Path = path;
-        }
-        
         public void Create()
         {
             if (Directory.Exists(Path.Path))
                 throw new FileAlreadyExistException();
+
             Directory.CreateDirectory(Path.Path);
         }
 
         public void Delete()
         {
-            Directory.Delete(Path.Path);
+            if (!Directory.Exists(Path.Path))
+                throw new FileNotFoundException();
+
+            Directory.Delete(Path.Path, true);
         }
 
         public IFileMoveProcess Move(bool keepOriginal)
         {
-            throw new System.NotImplementedException();
+            if (!Directory.Exists(Path.Path))
+                throw new FileNotFoundException();
+
+            return new WinFileMoveProcess(this, keepOriginal);
         }
 
         public static IEnumerable<WinFolder> GetRootFolders()

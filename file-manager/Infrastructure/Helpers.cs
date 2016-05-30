@@ -12,7 +12,11 @@ namespace filemanager.Infrastructure
         {
             if (!Directory.Exists(PluginsPath))
                 throw new DirectoryNotFoundException();
-            return Directory.EnumerateFiles(PluginsPath, "*.dll", SearchOption.TopDirectoryOnly);
+            return Directory.EnumerateFiles(
+                PluginsPath, 
+                "*.dll",
+                SearchOption.TopDirectoryOnly
+            );
         }
 
         public static bool IsCorrectMyPath(string path)

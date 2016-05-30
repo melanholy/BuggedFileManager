@@ -6,11 +6,6 @@ namespace filemanager.Domain
     public class WinFile : ITextFile
     {
         public MyPath Path { get; }
-        public string Name
-        {
-            get { return Path.GetFileName(); }
-            set { }
-        }
         public string Extension => 
             Path.GetExt();
 
@@ -23,17 +18,24 @@ namespace filemanager.Domain
         {
             if (File.Exists(Path.Path))
                 throw new FileAlreadyExistException();
+
             File.Create(Path.Path);
         }
 
         public void Delete()
         {
+            if (!File.Exists(Path.Path))
+                throw new FileNotFoundException();
+
             File.Delete(Path.Path);
         }
 
         public IFileMoveProcess Move(bool keepOriginal)
         {
-            throw new System.NotImplementedException();
+            if (!File.Exists(Path.Path))
+                throw new FileNotFoundException();
+
+            return new WinFileMoveProcess(this, keepOriginal);
         }
     }
 }

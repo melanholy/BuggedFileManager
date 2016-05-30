@@ -1,7 +1,12 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Net;
+using System.Windows;
 using API;
 using filemanager.Application;
+using filemanager.Domain;
 using filemanager.Infrastructure;
+using Limilabs.FTP.Client;
 
 namespace GUI
 {

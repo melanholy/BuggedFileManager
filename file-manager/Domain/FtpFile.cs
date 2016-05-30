@@ -1,36 +1,50 @@
 ﻿using System;
+using System.IO;
 using filemanager.Infrastructure;
+using Limilabs.FTP.Client;
 
 namespace filemanager.Domain
 {
     public class FtpFile : ITextFile
     {
         public MyPath Path { get; }
-        public string Extension { get; }
+        private readonly Ftp Client;
+        public string Extension
+            => Path.GetExt();
+
+        public FtpFile(MyPath path, Ftp client)
+        {
+            if (!client.IsMutuallyAuthenticated)
+                throw new ArgumentException("Ftp-клиент не авторизован");
+            if (!client.Connected)
+                throw new ArgumentException("Ftp-клиент не соединен ни с каким сервером");
+
+            Client = client;
+            Path = path;
+        }
 
         public void Create()
         {
-            throw new NotImplementedException();
+            if (Client.FileExists(Path.Path))
+                throw new FileAlreadyExistException();
+
+            Client.Upload(Path.Path, new byte[0]);
         }
 
         public void Delete()
         {
-            throw new NotImplementedException();
+            if (!Client.FileExists(Path.Path))
+                throw new FileNotFoundException();
+
+            Client.DeleteFile(Path.Path);
         }
 
         public IFileMoveProcess Move(bool keepOriginal)
         {
-            throw new NotImplementedException();
-        }
+            if (!Client.FileExists(Path.Path))
+                throw new FileNotFoundException();
 
-        public IFileMoveProcess Copy()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IFileMoveProcess Move()
-        {
-            throw new NotImplementedException();
+            return new FtpFileMoveProcess(this, keepOriginal, Client);
         }
     }
 }

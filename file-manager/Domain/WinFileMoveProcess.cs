@@ -1,4 +1,5 @@
-﻿using filemanager.Infrastructure;
+﻿using System;
+using filemanager.Infrastructure;
 
 namespace filemanager.Domain
 {
@@ -6,11 +7,6 @@ namespace filemanager.Domain
     {
         private readonly IFile File;
         public bool KeepOriginal { get; set; }
-
-        public WinFileMoveProcess(IFile file)
-        {
-            File = file;
-        }
 
         public WinFileMoveProcess(IFile file, bool keepOriginal)
         {
@@ -22,12 +18,23 @@ namespace filemanager.Domain
         {
             if (File is WinFile)
             {
+                if (System.IO.File.Exists(path.Path))
+                    throw new FileAlreadyExistException();
+
                 System.IO.File.Copy(File.Path.Path, path.Path);
+                if (!KeepOriginal)
+                    System.IO.File.Delete(File.Path.Path);
+            }
+            else if (File is WinFolder)
+            {
+                if (System.IO.Directory.Exists(path.Path))
+                    throw new FileAlreadyExistException();
+
+                var folder = (WinFolder)File;
+
             }
             else
-            {
-                
-            }
+                throw new ArgumentException();
         }
     }
 }
