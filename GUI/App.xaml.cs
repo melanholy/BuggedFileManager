@@ -16,7 +16,7 @@ namespace GUI
             });
             var pluginFiles = Helpers.GetPluginFiles();
             repo.RegisterPlugins(pluginFiles);
-            var w = new MainWindow();
+            var w = new MainWindow(repo);
             w.Show();
         }
     }

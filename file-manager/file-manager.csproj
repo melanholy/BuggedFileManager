@@ -51,6 +51,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Compile Include="Application\FileTree.cs" />
     <Compile Include="Domain\IFile.cs" />
     <Compile Include="Infrastructure\HistoryKeeper.cs" />
     <Compile Include="Application\PluginRepo.cs" />

@@ -2,29 +2,28 @@
 
 namespace filemanager.Infrastructure
 {
-	public class HistoryKeeper
+	public class HistoryKeeper<TObject>
 	{
-		private MyPath Current;
-	    private readonly Stack<MyPath> HistoryBck;
-	    private readonly Stack<MyPath> HistoryFwd;
+		private TObject Current;
+	    private readonly Stack<TObject> HistoryBck;
+	    private readonly Stack<TObject> HistoryFwd;
 
-	    public HistoryKeeper(MyPath start)
+	    public HistoryKeeper(TObject start)
 	    {
 	        Current = start;
-	        HistoryBck = new Stack<MyPath>();
-            HistoryFwd = new Stack<MyPath>();
+	        HistoryBck = new Stack<TObject>();
+            HistoryFwd = new Stack<TObject>();
 	    }
 
-		public MyPath GoToFolder(string folder)
+		public void Do(TObject obj)
 		{
             HistoryFwd.Clear();
             HistoryBck.Push(Current);
 
-            Current = Current.Join(folder);
-		    return Current;
+		    Current = obj;
 		}
 
-	    public MyPath GoBack()
+	    public TObject GoBack()
 	    {
             HistoryFwd.Push(Current);
 
@@ -32,7 +31,7 @@ namespace filemanager.Infrastructure
 	        return Current;
 	    }
 
-	    public MyPath GoForward()
+	    public TObject GoForward()
 	    {
             HistoryBck.Push(Current);
 
