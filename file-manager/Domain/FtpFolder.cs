@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using filemanager.Domain.Interfaces;
 using filemanager.Infrastructure;
 using Limilabs.FTP.Client;
 

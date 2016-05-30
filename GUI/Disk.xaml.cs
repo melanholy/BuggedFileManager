@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using filemanager.Domain;
+using filemanager.Domain.Interfaces;
 using filemanager.Infrastructure;
 
 namespace GUI

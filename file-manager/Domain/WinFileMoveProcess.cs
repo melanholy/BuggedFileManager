@@ -1,4 +1,5 @@
 ﻿using System;
+using filemanager.Domain.Interfaces;
 using filemanager.Infrastructure;
 
 namespace filemanager.Domain

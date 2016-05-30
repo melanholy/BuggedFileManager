@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace filemanager.Infrastructure
 {
@@ -9,12 +10,17 @@ namespace filemanager.Infrastructure
 		public MyPath (string path)
 		{
 		    path = path.Replace("\\", "/");
-            if (!Helpers.IsCorrectMyPath(path))
+            if (!IsCorrectMyPath(path))
                 throw new ArgumentException();
 			Path = path;
 		}
 
-		public MyPath Join(string file)
+        public static bool IsCorrectMyPath(string path)
+        {
+            return Regex.IsMatch(path, "(?:^\\w:)|(?:/+)(?:[^/]+/+)*");
+        }
+
+        public MyPath Join(string file)
 		{
 			return new MyPath($"{Path}/{file}");
 		}

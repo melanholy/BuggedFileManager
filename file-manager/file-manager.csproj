@@ -63,7 +63,6 @@
     <Compile Include="Domain\WinFolder.cs" />
     <Compile Include="Domain\Interfaces\ITextFile.cs" />
     <Compile Include="Domain\Interfaces\IFolder.cs" />
-    <Compile Include="Infrastructure\Helpers.cs" />
     <Compile Include="Infrastructure\MyPath.cs" />
     <Compile Include="Infrastructure\Exceptions.cs" />
   </ItemGroup>
@@ -74,10 +73,8 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Xaml" />
-    <Reference Include="XamlBuildTask" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

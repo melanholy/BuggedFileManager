@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace filemanager.Domain
+namespace filemanager.Domain.Interfaces
 {
     public interface ITextFile : IFile
     {

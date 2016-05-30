@@ -1,5 +1,6 @@
 ﻿using filemanager.Infrastructure;
 using System.IO;
+using filemanager.Domain.Interfaces;
 
 namespace filemanager.Domain
 {

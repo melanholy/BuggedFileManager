@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace filemanager.Domain
+namespace filemanager.Domain.Interfaces
 {
     public interface IFolder : IFile
     {

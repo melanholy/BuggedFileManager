@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using filemanager.Domain.Interfaces;
 using filemanager.Infrastructure;
 using Limilabs.FTP.Client;
 

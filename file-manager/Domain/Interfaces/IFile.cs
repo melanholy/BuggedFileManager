@@ -1,6 +1,6 @@
 ﻿using filemanager.Infrastructure;
 
-namespace filemanager.Domain
+namespace filemanager.Domain.Interfaces
 {
     public interface IFile
     {
