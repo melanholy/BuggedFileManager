@@ -19,6 +19,11 @@ namespace filemanager.Domain
             throw new NotImplementedException();
         }
 
+        public IFileMoveProcess Move(bool keepOriginal)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<IFile> EnumerateFiles()
         {
             throw new NotImplementedException();

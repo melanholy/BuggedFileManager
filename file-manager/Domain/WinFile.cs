@@ -30,5 +30,10 @@ namespace filemanager.Domain
         {
             File.Delete(Path.Path);
         }
+
+        public IFileMoveProcess Move(bool keepOriginal)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -17,5 +17,20 @@ namespace filemanager.Domain
         {
             throw new NotImplementedException();
         }
+
+        public IFileMoveProcess Move(bool keepOriginal)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IFileMoveProcess Copy()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IFileMoveProcess Move()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace GUI
     public partial class Disk
     {
         public MyPath Current;
-        private readonly HistoryKeeper History;
+        private readonly HistoryKeeper<MyPath> History;
         private readonly BitmapImage FolderIcon = new BitmapImage(new Uri(@"folder.bmp", UriKind.Relative));
         private readonly BitmapImage FileIcon = new BitmapImage(new Uri(@"file.bmp", UriKind.Relative));
         public event Action<MyPath> PathChanged;
@@ -20,7 +20,7 @@ namespace GUI
         {
             InitializeComponent();
 
-            History = new HistoryKeeper(root.Path);
+            History = new HistoryKeeper<MyPath>(root.Path);
             Current = root.Path;
             PutFilesOnPanel(root.EnumerateFiles());
         }

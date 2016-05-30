@@ -51,16 +51,17 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="Application\FileTree.cs" />
-    <Compile Include="Domain\IFile.cs" />
+    <Compile Include="Domain\Interfaces\IFile.cs" />
+    <Compile Include="Domain\Interfaces\IFileMoveProcess.cs" />
+    <Compile Include="Domain\WinFileMoveProcess.cs" />
     <Compile Include="Infrastructure\HistoryKeeper.cs" />
     <Compile Include="Application\PluginRepo.cs" />
     <Compile Include="Domain\FtpFile.cs" />
     <Compile Include="Domain\FtpFolder.cs" />
     <Compile Include="Domain\WinFile.cs" />
     <Compile Include="Domain\WinFolder.cs" />
-    <Compile Include="Domain\ITextFile.cs" />
-    <Compile Include="Domain\IFolder.cs" />
+    <Compile Include="Domain\Interfaces\ITextFile.cs" />
+    <Compile Include="Domain\Interfaces\IFolder.cs" />
     <Compile Include="Infrastructure\Helpers.cs" />
     <Compile Include="Infrastructure\MyPath.cs" />
     <Compile Include="Infrastructure\Exceptions.cs" />
