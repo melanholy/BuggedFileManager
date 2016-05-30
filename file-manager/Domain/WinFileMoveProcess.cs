@@ -14,20 +14,24 @@ namespace filemanager.Domain
             KeepOriginal = keepOriginal;
         }
 
-        public void To(MyPath path)
+        public void To(IFile destFile)
         {
             if (File is WinFile)
             {
-                if (System.IO.File.Exists(path.Path))
+                if (System.IO.File.Exists(destFile.Path.Path))
                     throw new FileAlreadyExistException();
 
-                System.IO.File.Copy(File.Path.Path, path.Path);
+                var file = (ITextFile)destFile;
+
+                using (var stream = System.IO.File.OpenRead(file.Path.Path))
+                    file.Create(stream);
+
                 if (!KeepOriginal)
                     System.IO.File.Delete(File.Path.Path);
             }
             else if (File is WinFolder)
             {
-                if (System.IO.Directory.Exists(path.Path))
+                if (System.IO.Directory.Exists(destFile.Path.Path))
                     throw new FileAlreadyExistException();
 
                 var folder = (WinFolder)File;

@@ -14,6 +14,14 @@ namespace filemanager.Domain
             Path = path;
         }
         
+        public void Create(Stream contents)
+        {
+            Create();
+
+            using (var s = File.OpenWrite(Path.Path))
+                contents.CopyTo(s);
+        }
+
         public void Create()
         {
             if (File.Exists(Path.Path))

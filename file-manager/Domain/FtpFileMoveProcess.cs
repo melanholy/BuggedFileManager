@@ -13,27 +13,35 @@ namespace filemanager.Domain
 
         public FtpFileMoveProcess(IFile file, bool keepOriginal, Ftp client)
         {
+            if (!(file is FtpFile || file is FtpFolder))
+                throw new ArgumentException();
+
             File = file;
             KeepOriginal = keepOriginal;
             Client = client;
         }
         
-        public void To(MyPath path)
+        public void To(IFile destFile)
         {
             if (File is FtpFile)
             {
-                if (Client.FileExists(path.Path))
+                var file = (ITextFile)destFile;
+
+                if (Client.FileExists(file.Path.Path))
                     throw new FileAlreadyExistException();
 
-                var stream = new MemoryStream();
-                Client.Download(File.Path.Path, stream);
-                Client.Upload(path.Path, stream);
+                using (var stream = new MemoryStream())
+                {
+                    Client.Download(File.Path.Path, stream);
+                    file.Create(stream);
+                }
+
                 if (!KeepOriginal)
                     Client.DeleteFile(File.Path.Path);
             }
             else if (File is FtpFolder)
             {
-                if (Client.FolderExists(path.Path))
+                if (Client.FolderExists(destFile.Path.Path))
                     throw new FileAlreadyExistException();
 
                 var folder = (FtpFolder) File;

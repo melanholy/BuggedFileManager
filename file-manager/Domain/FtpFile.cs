@@ -31,6 +31,14 @@ namespace filemanager.Domain
             Client.Upload(Path.Path, new byte[0]);
         }
 
+        public void Create(Stream contents)
+        {
+            if (Client.FileExists(Path.Path))
+                throw new FileAlreadyExistException();
+
+            Client.Upload(Path.Path, contents);
+        }
+
         public void Delete()
         {
             if (!Client.FileExists(Path.Path))

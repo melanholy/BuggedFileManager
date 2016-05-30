@@ -5,6 +5,6 @@ namespace filemanager.Domain
     public interface IFileMoveProcess
     {
         bool KeepOriginal { get; set; }
-        void To(MyPath path);
+        void To(IFile destFile);
     }
 }
