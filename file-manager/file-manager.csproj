@@ -55,8 +55,6 @@
     <Compile Include="Domain\Interfaces\IFile.cs" />
     <Compile Include="Domain\Interfaces\IFileMoveProcess.cs" />
     <Compile Include="Domain\WinFileMoveProcess.cs" />
-    <Compile Include="Infrastructure\HistoryKeeper.cs" />
-    <Compile Include="Application\PluginRepo.cs" />
     <Compile Include="Domain\FtpFile.cs" />
     <Compile Include="Domain\FtpFolder.cs" />
     <Compile Include="Domain\WinFile.cs" />
@@ -71,7 +69,6 @@
       <HintPath>..\packages\Ftp.dll.2.0.15314.1407\lib\Net45\Ftp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Xaml" />

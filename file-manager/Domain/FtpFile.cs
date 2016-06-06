@@ -10,8 +10,7 @@ namespace filemanager.Domain
     {
         public MyPath Path { get; }
         private readonly Ftp Client;
-        public string Extension
-            => Path.GetExt();
+        public string Extension => Path.GetExt();
 
         public FtpFile(MyPath path, Ftp client)
         {

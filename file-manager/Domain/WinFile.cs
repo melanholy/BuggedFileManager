@@ -7,8 +7,7 @@ namespace filemanager.Domain
     public class WinFile : ITextFile
     {
         public MyPath Path { get; }
-        public string Extension => 
-            Path.GetExt();
+        public string Extension => Path.GetExt();
 
         public WinFile(MyPath path)
         {

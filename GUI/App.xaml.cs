@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows;
 using API;
-using filemanager.Application;
+using GUI.Application;
 
 namespace GUI
 {

@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using filemanager.Domain.Interfaces;
 using filemanager.Infrastructure;
+using GUI.Application;
 
 namespace GUI
 {

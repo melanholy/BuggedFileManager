@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Windows;
-using filemanager.Application;
 using filemanager.Domain;
 using filemanager.Infrastructure;
+using GUI.Application;
 
 namespace GUI
 {

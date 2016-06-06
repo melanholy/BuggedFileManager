@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace filemanager.Infrastructure
+namespace GUI.Application
 {
 	public class HistoryKeeper<TObject>
 	{
