@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace GUI.Application
 {
+    public class EmptyHistoryException : Exception { }
+
 	public class HistoryKeeper<TObject>
 	{
 		private TObject Current;
@@ -25,6 +28,9 @@ namespace GUI.Application
 
 	    public TObject GoBack()
 	    {
+            if (HistoryBck.Count == 0)
+                throw new EmptyHistoryException();
+
             HistoryFwd.Push(Current);
 
             Current = HistoryBck.Pop();
@@ -33,6 +39,9 @@ namespace GUI.Application
 
 	    public TObject GoForward()
 	    {
+            if (HistoryFwd.Count == 0)
+                throw new EmptyHistoryException();
+
             HistoryBck.Push(Current);
 
             Current = HistoryFwd.Pop();

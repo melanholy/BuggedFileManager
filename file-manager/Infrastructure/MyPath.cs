@@ -20,7 +20,7 @@ namespace filemanager.Infrastructure
 
         public static bool IsCorrectMyPath(string path)
         {
-            return Regex.IsMatch(path, "(?:^\\w:)|(?:/+)(?:[^/]+/+)*");
+            return Regex.IsMatch(path, "(?:(?:^\\w:)|(?:^/+))(?:[^/]+/+)*");
         }
 
         public MyPath Join(string file)

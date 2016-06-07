@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Windows;
 using API;
 using GUI.Application;
@@ -28,8 +30,9 @@ namespace GUI
                 typeof(IFileIcon),
                 typeof(IMenuItem)
             });
+
             var pluginFiles = GetPluginFiles();
-            repo.RegisterPlugins(pluginFiles);
+            repo.RegisterPlugins(pluginFiles.Select(Assembly.LoadFile));
             var w = new MainWindow(repo);
             w.Show();
         }

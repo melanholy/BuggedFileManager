@@ -16,10 +16,10 @@ namespace GUI.Application
             KnownPlugins = knownPlugins;
         }
 
-        public void RegisterPlugins(IEnumerable<string> pluginFiles)
+        public void RegisterPlugins(IEnumerable<Assembly> assemblies)
         {
             Plugins.Clear();
-            foreach (var pluginFile in pluginFiles.Select(Assembly.LoadFile))
+            foreach (var pluginFile in assemblies)
                 foreach (var pluginType in KnownPlugins)
                 {
                     Plugins.Add(pluginType, new Dictionary<string, object>());

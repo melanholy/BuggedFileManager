@@ -114,9 +114,9 @@
       <Project>{D62B7E22-734D-45F1-8170-6C2AE5756B1F}</Project>
       <Name>File-Manager.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\file-manager\File-Manager.csproj">
+    <ProjectReference Include="..\file-manager\File-Manager.Domain.csproj">
       <Project>{dce48694-2565-4504-b01f-32e6423bf0ca}</Project>
-      <Name>File-Manager</Name>
+      <Name>File-Manager.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
