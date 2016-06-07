@@ -8,9 +8,8 @@ using Limilabs.FTP.Client;
 
 namespace filemanager.Domain
 {
-    public class FtpFolder : IFolder
+    public class FtpFolder : Folder
     {
-        public MyPath Path { get; }
         private readonly Ftp Client;
 
         public FtpFolder(MyPath path, Ftp client)
@@ -19,42 +18,53 @@ namespace filemanager.Domain
                 throw new ArgumentException("Ftp-клиент не авторизован");
             if (!client.Connected)
                 throw new ArgumentException("Ftp-клиент не соединен ни с каким сервером");
-
+            
             Client = client;
             Path = path;
         }
-        
-        public void Create()
+
+        public FtpFolder(MyPath path, Ftp client, FileInfo info) : this(path, client)
         {
-            if (Client.FolderExists(Path.Path))
+            Info = info;
+        }
+
+        public override void Create()
+        {
+            if (Client.FolderExists(Path.PathStr))
                 throw new FileAlreadyExistException();
 
-            Client.CreateFolder(Path.Path);
+            Client.CreateFolder(Path.PathStr);
         }
 
-        public void Delete()
+        public override void Delete()
         {
-            if (!Client.FolderExists(Path.Path))
+            if (!Client.FolderExists(Path.PathStr))
                 throw new FileNotFoundException();
 
-            Client.DeleteFolderRecursively(Path.Path);
+            Client.DeleteFolderRecursively(Path.PathStr);
         }
 
-        public IFileMoveProcess Move(bool keepOriginal)
+        public override IFileMoveProcess Move(bool keepOriginal)
         {
-            if (!Client.FolderExists(Path.Path))
+            if (!Client.FolderExists(Path.PathStr))
                 throw new FileNotFoundException();
 
             return new FtpFileMoveProcess(this, keepOriginal, Client);
         }
 
-        public IEnumerable<IFile> EnumerateFiles()
+        public override IEnumerable<MyFile> EnumerateFiles()
         {
-            var list = Client.List(Path.Path);
+            var list = Client.List(Path.PathStr);
             return list.Select(x => 
                 x.IsFile 
-                ? (IFile)new FtpFile(Path.Join(x.Name), Client) 
-                : new FtpFolder(Path.Join(x.Name), Client)
+                ? (MyFile)new FtpFile(
+                      Path.Join(x.Name), Client, 
+                      new FileInfo(new FileSize(x.Size.Value), x.ModifyDate, x.ModifyDate)
+                  )
+                : new FtpFolder(
+                      Path.Join(x.Name), Client, 
+                      new FileInfo(new FileSize(FileSize.DirSize), x.ModifyDate, x.ModifyDate)
+                  )
             );
         }
     }

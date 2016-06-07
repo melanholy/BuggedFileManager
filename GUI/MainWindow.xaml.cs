@@ -41,7 +41,7 @@ namespace GUI
 
         private void SetPathText(MyPath path)
         {
-            textBox.Text = path.Path;
+            textBox.Text = path.PathStr;
         }
 
         private void ForwardButtonOnClick(object sender, RoutedEventArgs routedEventArgs)

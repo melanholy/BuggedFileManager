@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Timers;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -17,10 +19,10 @@ namespace GUI
         private readonly BitmapImage FileIcon = new BitmapImage(new Uri(@"file.bmp", UriKind.Relative));
         public event Action<MyPath> PathChanged;
         
-        public Disk(IFolder root)
+        public Disk(Folder root)
         {
             InitializeComponent();
-
+            
             History = new HistoryKeeper<MyPath>(root.Path);
             Current = root.Path;
             PutFilesOnPanel(root.EnumerateFiles());
@@ -46,7 +48,7 @@ namespace GUI
             WrapPanelContextMenu.PlacementTarget = WrapPanel;
         }
 
-        private ContextMenu CreateFolderContextMenu(IFolder file)
+        private ContextMenu CreateFolderContextMenu(Folder file)
         {
             var folderContextMenu = new ContextMenu();
             var deleteItem = new MenuItem { Header = "Delete Folder" };
@@ -54,30 +56,30 @@ namespace GUI
             return folderContextMenu;
         }
 
-        private ContextMenu CreateFileContextMenu(ITextFile file)
+        private ContextMenu CreateFileContextMenu(TextMyFile myFile)
         {
             var fileContextMenu = new ContextMenu();
-            var deleteItem = new MenuItem { Header = "Delete File" };
+            var deleteItem = new MenuItem { Header = "Delete MyFile" };
             fileContextMenu.Items.Add(deleteItem);
             return fileContextMenu;
         }
 
-        private void PutFilesOnPanel(IEnumerable<IFile> files)
+        private void PutFilesOnPanel(IEnumerable<MyFile> files)
         {
             WrapPanel.Children.Clear();
             foreach (var file in files)
             {
                 BitmapImage icon = null;
                 ContextMenu contextMenu = null;
-                if (file is ITextFile)
+                if (file is TextMyFile)
                 {
                     icon = FileIcon;
-                    contextMenu = CreateFileContextMenu((ITextFile)file);
+                    contextMenu = CreateFileContextMenu((TextMyFile)file);
                 }
-                if (file is IFolder)
+                if (file is Folder)
                 {
                     icon = FolderIcon;
-                    contextMenu = CreateFolderContextMenu((IFolder)file);
+                    contextMenu = CreateFolderContextMenu((Folder)file);
                 }
                 var folderView = new FileView(icon, file.Path.GetFileName());
                 folderView.MouseUp += (sender, args) =>
@@ -97,11 +99,11 @@ namespace GUI
             }
         }
         
-        private void FolderViewOnMouseDoubleClick(IFile file)
+        private void FolderViewOnMouseDoubleClick(MyFile file)
         {
-            if (file is IFolder)
+            if (file is Folder)
             {
-                var folder = (IFolder)file;
+                var folder = (Folder)file;
             }
         }
     }

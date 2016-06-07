@@ -9,10 +9,10 @@ namespace filemanager.Domain
     public class FtpFileMoveProcess : IFileMoveProcess
     {
         public bool KeepOriginal { get; set; }
-        private readonly IFile File;
+        private readonly MyFile File;
         private readonly Ftp Client;
 
-        public FtpFileMoveProcess(IFile file, bool keepOriginal, Ftp client)
+        public FtpFileMoveProcess(MyFile file, bool keepOriginal, Ftp client)
         {
             if (!(file is FtpFile || file is FtpFolder))
                 throw new ArgumentException();
@@ -22,27 +22,27 @@ namespace filemanager.Domain
             Client = client;
         }
         
-        public void To(IFile destFile)
+        public void To(MyFile destFile)
         {
             if (File is FtpFile)
             {
-                var file = (ITextFile)destFile;
+                var file = (TextMyFile)destFile;
 
-                if (Client.FileExists(file.Path.Path))
+                if (Client.FileExists(file.Path.ToString()))
                     throw new FileAlreadyExistException();
 
                 using (var stream = new MemoryStream())
                 {
-                    Client.Download(File.Path.Path, stream);
+                    Client.Download(File.Path.ToString(), stream);
                     file.Create(stream);
                 }
 
                 if (!KeepOriginal)
-                    Client.DeleteFile(File.Path.Path);
+                    Client.DeleteFile(File.Path.ToString());
             }
             else if (File is FtpFolder)
             {
-                if (Client.FolderExists(destFile.Path.Path))
+                if (Client.FolderExists(destFile.Path.ToString()))
                     throw new FileAlreadyExistException();
 
                 var folder = (FtpFolder) File;

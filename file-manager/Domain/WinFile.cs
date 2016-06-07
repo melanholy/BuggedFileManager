@@ -4,43 +4,45 @@ using filemanager.Domain.Interfaces;
 
 namespace filemanager.Domain
 {
-    public class WinFile : ITextFile
+    public class WinFile : TextMyFile
     {
-        public MyPath Path { get; }
-        public string Extension => Path.GetExt();
-
         public WinFile(MyPath path)
         {
+            var info = new System.IO.FileInfo(path.PathStr);
+            Info = new FileInfo(
+                new FileSize(info.Length), 
+                info.CreationTime, info.LastWriteTime
+            );
             Path = path;
         }
         
-        public void Create(Stream contents)
+        public override void Create(Stream contents)
         {
             Create();
 
-            using (var s = File.OpenWrite(Path.Path))
+            using (var s = File.OpenWrite(Path.PathStr))
                 contents.CopyTo(s);
         }
 
-        public void Create()
+        public override void Create()
         {
-            if (File.Exists(Path.Path))
+            if (File.Exists(Path.PathStr))
                 throw new FileAlreadyExistException();
 
-            File.Create(Path.Path);
+            File.Create(Path.PathStr);
         }
 
-        public void Delete()
+        public override void Delete()
         {
-            if (!File.Exists(Path.Path))
+            if (!File.Exists(Path.PathStr))
                 throw new FileNotFoundException();
 
-            File.Delete(Path.Path);
+            File.Delete(Path.PathStr);
         }
 
-        public IFileMoveProcess Move(bool keepOriginal)
+        public override IFileMoveProcess Move(bool keepOriginal)
         {
-            if (!File.Exists(Path.Path))
+            if (!File.Exists(Path.PathStr))
                 throw new FileNotFoundException();
 
             return new WinFileMoveProcess(this, keepOriginal);

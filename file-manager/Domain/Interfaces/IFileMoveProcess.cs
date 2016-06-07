@@ -12,6 +12,6 @@
     public interface IFileMoveProcess
     {
         bool KeepOriginal { get; set; }
-        void To(IFile destFile);
+        void To(MyFile destFile);
     }
 }

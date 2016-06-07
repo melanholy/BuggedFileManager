@@ -6,11 +6,9 @@ using Limilabs.FTP.Client;
 
 namespace filemanager.Domain
 {
-    public class FtpFile : ITextFile
+    public class FtpFile : TextMyFile
     {
-        public MyPath Path { get; }
         private readonly Ftp Client;
-        public string Extension => Path.GetExt();
 
         public FtpFile(MyPath path, Ftp client)
         {
@@ -18,38 +16,44 @@ namespace filemanager.Domain
                 throw new ArgumentException("Ftp-клиент не авторизован");
             if (!client.Connected)
                 throw new ArgumentException("Ftp-клиент не соединен ни с каким сервером");
-
+            
+            
             Client = client;
             Path = path;
         }
 
-        public void Create()
+        public FtpFile(MyPath path, Ftp client, FileInfo info) : this(path, client)
         {
-            if (Client.FileExists(Path.Path))
-                throw new FileAlreadyExistException();
-
-            Client.Upload(Path.Path, new byte[0]);
+            Info = info;
         }
 
-        public void Create(Stream contents)
+        public override void Create()
         {
-            if (Client.FileExists(Path.Path))
+            if (Client.FileExists(Path.PathStr))
                 throw new FileAlreadyExistException();
 
-            Client.Upload(Path.Path, contents);
+            Client.Upload(Path.PathStr, new byte[0]);
         }
 
-        public void Delete()
+        public override void Create(Stream contents)
         {
-            if (!Client.FileExists(Path.Path))
+            if (Client.FileExists(Path.PathStr))
+                throw new FileAlreadyExistException();
+
+            Client.Upload(Path.PathStr, contents);
+        }
+
+        public override void Delete()
+        {
+            if (!Client.FileExists(Path.PathStr))
                 throw new FileNotFoundException();
 
-            Client.DeleteFile(Path.Path);
+            Client.DeleteFile(Path.PathStr);
         }
 
-        public IFileMoveProcess Move(bool keepOriginal)
+        public override IFileMoveProcess Move(bool keepOriginal)
         {
-            if (!Client.FileExists(Path.Path))
+            if (!Client.FileExists(Path.PathStr))
                 throw new FileNotFoundException();
 
             return new FtpFileMoveProcess(this, keepOriginal, Client);

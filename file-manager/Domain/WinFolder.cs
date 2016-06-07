@@ -6,43 +6,46 @@ using filemanager.Infrastructure;
 
 namespace filemanager.Domain
 {
-    public class WinFolder : IFolder
+    public class WinFolder : Folder
     {
-        public MyPath Path { get; }
-
         public WinFolder(MyPath path)
         {
+            var info = new DirectoryInfo(path.PathStr);
+            Info = new FileInfo(
+                new FileSize(FileSize.DirSize), 
+                info.CreationTime, info.LastWriteTime
+            );
             Path = path;
         }
 
-        public IEnumerable<IFile> EnumerateFiles()
+        public override IEnumerable<MyFile> EnumerateFiles()
         {
-            var files = Directory.EnumerateFiles(Path.Path);
-            var dirs = Directory.EnumerateDirectories(Path.Path);
+            var files = Directory.EnumerateFiles(Path.PathStr);
+            var dirs = Directory.EnumerateDirectories(Path.PathStr);
             return files
-                .Select(x => (IFile)new WinFile(new MyPath(x)))
+                .Select(x => (MyFile)new WinFile(new MyPath(x)))
                 .Union(dirs.Select(x => new WinFolder(new MyPath(x))));
         }
 
-        public void Create()
+        public override void Create()
         {
-            if (Directory.Exists(Path.Path))
+            if (Directory.Exists(Path.PathStr))
                 throw new FileAlreadyExistException();
 
-            Directory.CreateDirectory(Path.Path);
+            Directory.CreateDirectory(Path.PathStr);
         }
 
-        public void Delete()
+        public override void Delete()
         {
-            if (!Directory.Exists(Path.Path))
+            if (!Directory.Exists(Path.PathStr))
                 throw new FileNotFoundException();
 
-            Directory.Delete(Path.Path, true);
+            Directory.Delete(Path.PathStr, true);
         }
 
-        public IFileMoveProcess Move(bool keepOriginal)
+        public override IFileMoveProcess Move(bool keepOriginal)
         {
-            if (!Directory.Exists(Path.Path))
+            if (!Directory.Exists(Path.PathStr))
                 throw new FileNotFoundException();
 
             return new WinFileMoveProcess(this, keepOriginal);

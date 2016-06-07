@@ -5,14 +5,17 @@ namespace filemanager.Infrastructure
 {
 	public class MyPath
 	{
-		public string Path { get; }
+		public string PathStr { get; }
 
-		public MyPath (string path)
+		public MyPath (string pathStr)
 		{
-		    path = path.Replace("\\", "/");
-            if (!IsCorrectMyPath(path))
+            if (pathStr == null)
                 throw new ArgumentException();
-			Path = path;
+
+		    pathStr = pathStr.Replace("\\", "/");
+            if (!IsCorrectMyPath(pathStr))
+                throw new ArgumentException();
+			PathStr = pathStr;
 		}
 
         public static bool IsCorrectMyPath(string path)
@@ -22,20 +25,20 @@ namespace filemanager.Infrastructure
 
         public MyPath Join(string file)
 		{
-			return new MyPath($"{Path}/{file}");
+			return new MyPath($"{PathStr}/{file}");
 		}
 
 		public string GetFileName()
 		{
-            var idx = Path.LastIndexOf("/", StringComparison.Ordinal);
-            var name =  idx < 0 ? "" : Path.Substring(idx + 1);
-            return name == "" ? Path : name;
+            var idx = PathStr.LastIndexOf("/", StringComparison.Ordinal);
+            var name =  idx < 0 ? "" : PathStr.Substring(idx + 1);
+            return name == "" ? PathStr : name;
 		}
 
 		public string GetExt()
 		{
-		    var idx = Path.LastIndexOf(".", StringComparison.Ordinal);
-		    return idx < 0 ? "" : Path.Substring(idx + 1);
+		    var idx = PathStr.LastIndexOf(".", StringComparison.Ordinal);
+		    return idx < 0 ? "" : PathStr.Substring(idx + 1);
 		}
 	}
 }

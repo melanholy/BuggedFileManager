@@ -6,33 +6,32 @@ namespace filemanager.Domain
 {
     public class WinFileMoveProcess : IFileMoveProcess
     {
-        private readonly IFile File;
+        private readonly MyFile File;
         public bool KeepOriginal { get; set; }
 
-        public WinFileMoveProcess(IFile file, bool keepOriginal)
+        public WinFileMoveProcess(MyFile file, bool keepOriginal)
         {
             File = file;
             KeepOriginal = keepOriginal;
         }
 
-        public void To(IFile destFile)
+        public void To(MyFile destFile)
         {
             if (File is WinFile)
             {
-                if (System.IO.File.Exists(destFile.Path.Path))
+                if (System.IO.File.Exists(destFile.Path.PathStr))
                     throw new FileAlreadyExistException();
 
-                var file = (ITextFile)destFile;
-
-                using (var stream = System.IO.File.OpenRead(file.Path.Path))
+                var file = (TextMyFile)destFile;
+                using (var stream = System.IO.File.OpenRead(file.Path.PathStr))
                     file.Create(stream);
 
                 if (!KeepOriginal)
-                    System.IO.File.Delete(File.Path.Path);
+                    System.IO.File.Delete(File.Path.PathStr);
             }
             else if (File is WinFolder)
             {
-                if (System.IO.Directory.Exists(destFile.Path.Path))
+                if (System.IO.Directory.Exists(destFile.Path.PathStr))
                     throw new FileAlreadyExistException();
 
                 var folder = (WinFolder)File;
