@@ -51,11 +51,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Disk.xaml">
+    <Compile Include="Controls\TreeViewItemStyled.xaml.cs">
+      <DependentUpon>TreeViewItemStyled.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\Disk.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FileView.xaml">
+    <Page Include="Controls\FileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -69,16 +72,20 @@
     </Compile>
     <Compile Include="Application\HistoryKeeper.cs" />
     <Compile Include="Application\PluginRepo.cs" />
-    <Compile Include="Disk.xaml.cs">
+    <Compile Include="Controls\Disk.xaml.cs">
       <DependentUpon>Disk.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FileView.xaml.cs">
+    <Compile Include="Controls\FileView.xaml.cs">
       <DependentUpon>FileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Controls\TreeViewItemStyled.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -118,6 +125,12 @@
       <Project>{dce48694-2565-4504-b01f-32e6423bf0ca}</Project>
       <Name>File-Manager.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\folder.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\file.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

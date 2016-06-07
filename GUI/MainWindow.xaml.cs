@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Windows;
-using filemanager.Domain;
 using filemanager.Domain.Windows;
 using filemanager.Infrastructure;
 using GUI.Application;

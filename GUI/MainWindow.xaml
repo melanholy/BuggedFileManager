@@ -8,20 +8,15 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <TreeView Grid.Row="1" Grid.Column="0" x:Name="treeView" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="100"/>
-        <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+        <WrapPanel Grid.Row="0">
             <Button x:Name="BackButton" Width="30" Content="◀" />
             <Button x:Name="ForwardButton" Width="30" Content="▶"/>
             <Button x:Name="UpButton" Width="30" Content="▲"/>
         </WrapPanel>
-        <DockPanel Grid.Row="1" Grid.Column="1" LastChildFill="True">
+        <DockPanel Grid.Row="1" LastChildFill="True">
             <TextBox DockPanel.Dock="Top" x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
             <TabControl DockPanel.Dock="Bottom" Name="DiskTabs"></TabControl>
         </DockPanel>

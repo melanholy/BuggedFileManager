@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using API;
 using GUI.Application;
 
@@ -35,6 +36,22 @@ namespace GUI
             repo.RegisterPlugins(pluginFiles.Select(Assembly.LoadFile));
             var w = new MainWindow(repo);
             w.Show();
+        }
+    }
+
+    public class Extensions
+    {
+        public static readonly DependencyProperty ImageProperty =
+            DependencyProperty.RegisterAttached("Image", typeof(BitmapImage), typeof(Extensions), new PropertyMetadata(default(BitmapImage)));
+
+        public static void SetImage(UIElement element, BitmapImage value)
+        {
+            element.SetValue(ImageProperty, value);
+        }
+
+        public static BitmapImage GetImage(UIElement element)
+        {
+            return (BitmapImage)element.GetValue(ImageProperty);
         }
     }
 }
