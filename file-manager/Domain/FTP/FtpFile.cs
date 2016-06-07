@@ -4,9 +4,9 @@ using filemanager.Domain.Interfaces;
 using filemanager.Infrastructure;
 using Limilabs.FTP.Client;
 
-namespace filemanager.Domain
+namespace filemanager.Domain.FTP
 {
-    public class FtpFile : TextMyFile
+    public class FtpFile : TextFile
     {
         private readonly Ftp Client;
 

@@ -6,7 +6,7 @@ using filemanager.Domain.Interfaces;
 using filemanager.Infrastructure;
 using Limilabs.FTP.Client;
 
-namespace filemanager.Domain
+namespace filemanager.Domain.FTP
 {
     public class FtpFolder : Folder
     {

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "file-manager", "file-manager\file-manager.csproj", "{DCE48694-2565-4504-B01F-32E6423BF0CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "File-Manager", "file-manager\File-Manager.csproj", "{DCE48694-2565-4504-B01F-32E6423BF0CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{D62B7E22-734D-45F1-8170-6C2AE5756B1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "File-Manager.API", "API\File-Manager.API.csproj", "{D62B7E22-734D-45F1-8170-6C2AE5756B1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUI\GUI.csproj", "{2E50F551-4023-4EEE-8705-5AB2A39352D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "File-Manager.GUI", "GUI\File-Manager.GUI.csproj", "{2E50F551-4023-4EEE-8705-5AB2A39352D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

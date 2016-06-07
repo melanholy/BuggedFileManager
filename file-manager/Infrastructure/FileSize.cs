@@ -12,6 +12,7 @@ namespace filemanager.Infrastructure
         {
             if (Value < -1)
                 throw new ArgumentException();
+
             Value = value;
         }
 

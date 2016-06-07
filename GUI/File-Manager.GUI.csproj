@@ -110,13 +110,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\API\API.csproj">
+    <ProjectReference Include="..\API\File-Manager.API.csproj">
       <Project>{D62B7E22-734D-45F1-8170-6C2AE5756B1F}</Project>
-      <Name>API</Name>
+      <Name>File-Manager.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\file-manager\file-manager.csproj">
+    <ProjectReference Include="..\file-manager\File-Manager.csproj">
       <Project>{dce48694-2565-4504-b01f-32e6423bf0ca}</Project>
-      <Name>file-manager</Name>
+      <Name>File-Manager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

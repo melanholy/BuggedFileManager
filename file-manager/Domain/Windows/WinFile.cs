@@ -1,10 +1,10 @@
-﻿using filemanager.Infrastructure;
-using System.IO;
+﻿using System.IO;
 using filemanager.Domain.Interfaces;
+using filemanager.Infrastructure;
 
-namespace filemanager.Domain
+namespace filemanager.Domain.Windows
 {
-    public class WinFile : TextMyFile
+    public class WinFile : TextFile
     {
         public WinFile(MyPath path)
         {

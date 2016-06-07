@@ -4,7 +4,7 @@ using filemanager.Domain.Interfaces;
 using filemanager.Infrastructure;
 using Limilabs.FTP.Client;
 
-namespace filemanager.Domain
+namespace filemanager.Domain.FTP
 {
     public class FtpFileMoveProcess : IFileMoveProcess
     {
@@ -26,7 +26,7 @@ namespace filemanager.Domain
         {
             if (File is FtpFile)
             {
-                var file = (TextMyFile)destFile;
+                var file = (TextFile)destFile;
 
                 if (Client.FileExists(file.Path.ToString()))
                     throw new FileAlreadyExistException();

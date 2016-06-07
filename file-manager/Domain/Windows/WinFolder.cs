@@ -4,7 +4,7 @@ using System.Linq;
 using filemanager.Domain.Interfaces;
 using filemanager.Infrastructure;
 
-namespace filemanager.Domain
+namespace filemanager.Domain.Windows
 {
     public class WinFolder : Folder
     {

@@ -2,7 +2,7 @@
 using filemanager.Domain.Interfaces;
 using filemanager.Infrastructure;
 
-namespace filemanager.Domain
+namespace filemanager.Domain.Windows
 {
     public class WinFileMoveProcess : IFileMoveProcess
     {
@@ -22,7 +22,7 @@ namespace filemanager.Domain
                 if (System.IO.File.Exists(destFile.Path.PathStr))
                     throw new FileAlreadyExistException();
 
-                var file = (TextMyFile)destFile;
+                var file = (TextFile)destFile;
                 using (var stream = System.IO.File.OpenRead(file.Path.PathStr))
                     file.Create(stream);
 

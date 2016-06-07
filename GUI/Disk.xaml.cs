@@ -56,7 +56,7 @@ namespace GUI
             return folderContextMenu;
         }
 
-        private ContextMenu CreateFileContextMenu(TextMyFile myFile)
+        private ContextMenu CreateFileContextMenu(TextFile file)
         {
             var fileContextMenu = new ContextMenu();
             var deleteItem = new MenuItem { Header = "Delete MyFile" };
@@ -71,10 +71,10 @@ namespace GUI
             {
                 BitmapImage icon = null;
                 ContextMenu contextMenu = null;
-                if (file is TextMyFile)
+                if (file is TextFile)
                 {
                     icon = FileIcon;
-                    contextMenu = CreateFileContextMenu((TextMyFile)file);
+                    contextMenu = CreateFileContextMenu((TextFile)file);
                 }
                 if (file is Folder)
                 {
