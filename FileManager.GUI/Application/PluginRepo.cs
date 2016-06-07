@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace GUI.Application
+namespace FileManager.GUI.Application
 {
     public class PluginRepo
     {

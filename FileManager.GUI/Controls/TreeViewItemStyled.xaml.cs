@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media.Imaging;
 
-namespace GUI
+namespace FileManager.GUI.Controls
 {
     public partial class TreeViewItemStyled
     {

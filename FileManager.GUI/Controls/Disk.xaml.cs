@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Timers;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using filemanager.Domain.Interfaces;
 using filemanager.Infrastructure;
-using GUI.Application;
+using FileManager.GUI.Application;
 
-namespace GUI
+namespace FileManager.GUI.Controls
 {
     public partial class Disk
     {
         public MyPath Current;
         private readonly HistoryKeeper<MyPath> History;
-        private static readonly BitmapImage FolderIcon  = new BitmapImage(new Uri(@"pack://application:,,,/GUI;component/Resources/folder.bmp"));
-        private static readonly BitmapImage FileIcon = new BitmapImage(new Uri(@"pack://application:,,,/GUI;component/Resources/file.bmp"));
+        private static readonly BitmapImage FolderIcon  = new BitmapImage(new Uri(@"pack://application:,,,/gfilemanager;component/Resources/folder.bmp"));
+        private static readonly BitmapImage FileIcon = new BitmapImage(new Uri(@"pack://application:,,,/gfilemanager;component/Resources/file.bmp"));
 
         public event Action<MyPath> PathChanged;
         

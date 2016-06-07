@@ -7,8 +7,8 @@
     <ProjectGuid>{2E50F551-4023-4EEE-8705-5AB2A39352D1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GUI</RootNamespace>
-    <AssemblyName>GUI</AssemblyName>
+    <RootNamespace>FileManager.GUI</RootNamespace>
+    <AssemblyName>gfilemanager</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -117,13 +117,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\API\File-Manager.API.csproj">
+    <ProjectReference Include="..\FileManager.API\FileManager.API.csproj">
       <Project>{D62B7E22-734D-45F1-8170-6C2AE5756B1F}</Project>
-      <Name>File-Manager.API</Name>
+      <Name>FileManager.API</Name>
     </ProjectReference>
-    <ProjectReference Include="..\file-manager\File-Manager.Domain.csproj">
+    <ProjectReference Include="..\FileManager.Domain\FileManager.Domain.csproj">
       <Project>{dce48694-2565-4504-b01f-32e6423bf0ca}</Project>
-      <Name>File-Manager.Domain</Name>
+      <Name>FileManager.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

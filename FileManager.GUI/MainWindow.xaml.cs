@@ -2,9 +2,10 @@
 using System.Windows;
 using filemanager.Domain.Windows;
 using filemanager.Infrastructure;
-using GUI.Application;
+using FileManager.GUI.Application;
+using FileManager.GUI.Controls;
 
-namespace GUI
+namespace FileManager.GUI
 {
     public partial class MainWindow
     {

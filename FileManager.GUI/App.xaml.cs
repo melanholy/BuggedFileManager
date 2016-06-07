@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using API;
-using GUI.Application;
+using FileManager.GUI.Application;
 
-namespace GUI
+namespace FileManager.GUI
 {
     public partial class App
     {
