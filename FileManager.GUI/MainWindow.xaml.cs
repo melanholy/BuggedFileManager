@@ -18,7 +18,7 @@ namespace FileManager.GUI
     public partial class MainWindow
     {
         private Disk Active;
-        private PluginRepo Repo;
+        private readonly PluginRepo Repo;
 
         public MainWindow(PluginRepo repo)
         {
@@ -94,6 +94,9 @@ namespace FileManager.GUI
         {
             var dialog = new FtpDialog();
             dialog.ShowDialog();
+
+            if (dialog.Address == "")
+                return;
             var client = new Ftp();
             IPHostEntry host;
             try
@@ -102,11 +105,21 @@ namespace FileManager.GUI
             }
             catch (SocketException)
             {
-                MessageBox.Show("Некорректный адрес.");
+                MessageBox.Show("Invalid address.");
                 return;
             }
-
-            client.Connect(host.AddressList[0], 21, false);
+            client.ReceiveTimeout = TimeSpan.FromSeconds(5);
+            client.SendTimeout = TimeSpan.FromSeconds(5);
+            try
+            {
+                await Task.Run(() => client.Connect(host.AddressList[0], 21, false));
+            }
+            catch (FtpException)
+            {
+                MessageBox.Show("FTP Server didn't respond.");
+                return;
+            }
+            
             try
             {
                 if (dialog.Password != "" && dialog.Login != "")
@@ -116,7 +129,7 @@ namespace FileManager.GUI
             }
             catch (FtpResponseException)
             {
-                MessageBox.Show("Некорректный логин или пароль.");
+                MessageBox.Show("Invalid login or password.");
                 return;
             }
 

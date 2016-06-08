@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace FileManager.GUI.Controls
 {
@@ -11,10 +12,20 @@ namespace FileManager.GUI.Controls
         public FtpDialog()
         {
             InitializeComponent();
+
+            AddressTextBox.Focus();
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
+            Close();
+        }
+
+        private void FtpDialog_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter)
+                return;
+
             Close();
         }
     }

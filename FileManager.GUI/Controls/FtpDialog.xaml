@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileManager.GUI.Controls"
         mc:Ignorable="d"
-        Title="FTP Connect" Width="177" Height="190">
+        Title="FTP Connect" Width="177" Height="190" KeyUp="FtpDialog_OnKeyUp">
     <StackPanel>
         <TextBlock Text="Server address:" Margin="4,1"/>
         <TextBox Name="AddressTextBox" Margin="4,1"/>
