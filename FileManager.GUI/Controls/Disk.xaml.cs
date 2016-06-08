@@ -94,6 +94,12 @@ namespace FileManager.GUI.Controls
             return fileContextMenu;
         }
 
+        public void GoToFolder(MyPath path)
+        {
+            var folder = Manager.Go(path);
+            PathChanged?.Invoke(Current);
+        }
+
         private void PutFilesOnPanel(IEnumerable<MyFile> files)
         {
             WrapPanel.Children.Clear();
@@ -111,7 +117,7 @@ namespace FileManager.GUI.Controls
                     icon = FolderIcon;
                     contextMenu = CreateFolderContextMenu((Folder)file);
                 }
-                var folderView = new FileView(icon, file.Path.GetFileName());
+                var folderView = new FileView(icon, file.Path.GetFileName(), file.Info);
                 folderView.MouseUp += (sender, args) =>
                 {
                     if (args.ChangedButton == MouseButton.Right)

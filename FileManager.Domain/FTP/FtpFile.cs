@@ -36,7 +36,7 @@ namespace FileManager.Domain.FTP
 
         public override void Create()
         {
-            if (Client.FileExists(Path.PathStr))
+            if (Exists())
                 throw new FileAlreadyExistException();
 
             Client.Upload(Path.PathStr, new byte[0]);
@@ -44,7 +44,7 @@ namespace FileManager.Domain.FTP
 
         public override void Create(Stream contents)
         {
-            if (Client.FileExists(Path.PathStr))
+            if (Exists())
                 throw new FileAlreadyExistException();
 
             Client.Upload(Path.PathStr, contents);
@@ -52,7 +52,7 @@ namespace FileManager.Domain.FTP
 
         public override void Delete()
         {
-            if (!Client.FileExists(Path.PathStr))
+            if (!Exists())
                 throw new FileNotFoundException();
 
             Client.DeleteFile(Path.PathStr);
@@ -60,10 +60,15 @@ namespace FileManager.Domain.FTP
 
         public override IFileMoveProcess Move(bool keepOriginal)
         {
-            if (!Client.FileExists(Path.PathStr))
+            if (!Exists())
                 throw new FileNotFoundException();
 
             return new FtpFileMoveProcess(this, keepOriginal, Client);
+        }
+
+        public override bool Exists()
+        {
+            return Client.FileExists(Path.PathStr);
         }
     }
 }

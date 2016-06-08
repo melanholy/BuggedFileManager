@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using FileManager.Domain.Infrastructure;
 using FileManager.Domain.Models;
 
@@ -27,18 +26,13 @@ namespace FileManager.Domain.Windows
 
         public void To(MyFile destFile)
         {
-            if (File is WinFile)
-            {
-                if (System.IO.File.Exists(destFile.Path.PathStr))
-                    throw new FileAlreadyExistException();
+            if (destFile.Exists())
+                throw new FileAlreadyExistException();
 
+            if (File is WinFile)
                 MoveFile((TextFile)destFile);
-            }
             else if (File is WinFolder)
             {
-                if (System.IO.Directory.Exists(destFile.Path.PathStr))
-                    throw new FileAlreadyExistException();
-
                 var folder = (WinFolder)File;
 
             }

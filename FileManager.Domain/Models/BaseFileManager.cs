@@ -34,5 +34,6 @@ namespace FileManager.Domain.Models
 
         public abstract Folder GoUp();
         public abstract void Create<TFile>(string filename) where TFile : MyFile;
+        public abstract Folder Go(MyPath path);
     }
 }

@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using FileManager.Domain.Infrastructure;
 using FileManager.Domain.Windows;
 using FileManager.GUI.Application;
@@ -60,6 +62,24 @@ namespace FileManager.GUI
         private void UpButton_OnClick(object sender, RoutedEventArgs e)
         {
             Active.GoUp();
+        }
+
+        private void PathTextBox_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter)
+                return;
+
+            MyPath path;
+            try
+            {
+                path = new MyPath(PathTextBox.Text);
+            }
+            catch (ArgumentException)
+            {
+                PathTextBox.Text = Active.Current.PathStr;
+                return;
+            }
+            Active.GoToFolder(path);
         }
     }
 }

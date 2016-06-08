@@ -16,9 +16,9 @@ namespace FileManager.Domain.Infrastructure
             Value = value;
         }
 
-        public override string ToString()
+        public string ToString(string format="")
         {
-            return Value == -1 ? "<DIR>" : Value.ToString();
+            return Value == -1 ? "<DIR>" : Value.ToString(format);
         }
     }
 }

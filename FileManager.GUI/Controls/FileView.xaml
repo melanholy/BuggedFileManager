@@ -6,7 +6,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="75" d:DesignWidth="75">
     <Border BorderThickness="1" Style="{StaticResource FileBorderStyle}">
-        <DockPanel>
+        <DockPanel ToolTipService.ShowDuration="12000" ToolTipService.InitialShowDelay="900">
+            <DockPanel.ToolTip>
+                <ToolTip Background="MintCream" >
+                    <TextBlock Name ="Description" Margin="3" Foreground="SlateGray"/>
+                </ToolTip>
+            </DockPanel.ToolTip>
             <Image Height="55" Width="75" DockPanel.Dock="Top" x:Name="Image"/>
             <TextBlock x:Name="Filename" Height="20" Width="70" TextAlignment="Center" TextWrapping="Wrap" Text="TextBlock" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </DockPanel>

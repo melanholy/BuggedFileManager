@@ -1,3 +1,4 @@
+using System.IO;
 using FileManager.Domain.Infrastructure;
 using FileManager.Domain.Models;
 
@@ -25,6 +26,15 @@ namespace FileManager.Domain.Windows
             else
                 file = new WinFolder(CurrentPath.Join(filename));
             file.Create();
+        }
+
+        public override Folder Go(MyPath path)
+        {
+            var folder = new WinFolder(path);
+            if (!folder.Exists())
+                throw new DirectoryNotFoundException();
+
+            return folder;
         }
     }
 }

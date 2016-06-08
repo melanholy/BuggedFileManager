@@ -31,7 +31,7 @@ namespace FileManager.Domain.Windows
 
         public override void Create()
         {
-            if (File.Exists(Path.PathStr))
+            if (Exists())
                 throw new FileAlreadyExistException();
 
             File.Create(Path.PathStr);
@@ -39,7 +39,7 @@ namespace FileManager.Domain.Windows
 
         public override void Delete()
         {
-            if (!File.Exists(Path.PathStr))
+            if (!Exists())
                 throw new FileNotFoundException();
 
             File.Delete(Path.PathStr);
@@ -47,10 +47,15 @@ namespace FileManager.Domain.Windows
 
         public override IFileMoveProcess Move(bool keepOriginal)
         {
-            if (!File.Exists(Path.PathStr))
+            if (!Exists())
                 throw new FileNotFoundException();
 
             return new WinFileMoveProcess(this, keepOriginal);
+        }
+
+        public override bool Exists()
+        {
+            return File.Exists(Path.PathStr);
         }
     }
 }

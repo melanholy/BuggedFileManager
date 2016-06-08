@@ -36,18 +36,13 @@ namespace FileManager.Domain.FTP
         
         public void To(MyFile destFile)
         {
-            if (File is FtpFile)
-            {
-                if (Client.FileExists(destFile.Path.PathStr))
-                    throw new FileAlreadyExistException();
+            if (destFile.Exists())
+                throw new FileAlreadyExistException();
 
+            if (File is FtpFile)
                 MoveFile((TextFile)destFile);
-            }
             else if (File is FtpFolder)
             {
-                if (Client.FolderExists(destFile.Path.PathStr))
-                    throw new FileAlreadyExistException();
-
                 var folder = (FtpFolder) File;
 
             }

@@ -20,7 +20,8 @@
                     Focusable="False" />
         </WrapPanel>
         <DockPanel Grid.Row="1" LastChildFill="True">
-            <TextBox DockPanel.Dock="Top" x:Name="PathTextBox" Height="23" TextWrapping="Wrap" />
+            <TextBox DockPanel.Dock="Top" x:Name="PathTextBox" Height="23" TextWrapping="Wrap" 
+                     KeyUp="PathTextBox_OnKeyUp"/>
             <TabControl DockPanel.Dock="Bottom" Name="DiskTabs"></TabControl>
         </DockPanel>
     </Grid>

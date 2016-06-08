@@ -1,4 +1,5 @@
-﻿using FileManager.Domain.Infrastructure;
+﻿using System.IO;
+using FileManager.Domain.Infrastructure;
 using FileManager.Domain.Models;
 using FileManager.Domain.Windows;
 using Limilabs.FTP.Client;
@@ -30,6 +31,15 @@ namespace FileManager.Domain.FTP
             else
                 file = new FtpFolder(CurrentPath.Join(filename), Client);
             file.Create();
+        }
+
+        public override Folder Go(MyPath path)
+        {
+            var folder = new FtpFolder(path, Client);
+            if (!folder.Exists())
+                throw new DirectoryNotFoundException();
+
+            return folder;
         }
     }
 }

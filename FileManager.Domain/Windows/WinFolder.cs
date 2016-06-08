@@ -29,7 +29,7 @@ namespace FileManager.Domain.Windows
 
         public override void Create()
         {
-            if (Directory.Exists(Path.PathStr))
+            if (Exists())
                 throw new FileAlreadyExistException();
 
             Directory.CreateDirectory(Path.PathStr);
@@ -37,7 +37,7 @@ namespace FileManager.Domain.Windows
 
         public override void Delete()
         {
-            if (!Directory.Exists(Path.PathStr))
+            if (!Exists())
                 throw new FileNotFoundException();
 
             Directory.Delete(Path.PathStr, true);
@@ -45,10 +45,15 @@ namespace FileManager.Domain.Windows
 
         public override IFileMoveProcess Move(bool keepOriginal)
         {
-            if (!Directory.Exists(Path.PathStr))
+            if (!Exists())
                 throw new FileNotFoundException();
 
             return new WinFileMoveProcess(this, keepOriginal);
+        }
+
+        public override bool Exists()
+        {
+            return Directory.Exists(Path.PathStr);
         }
 
         public static IEnumerable<WinFolder> GetRootFolders()

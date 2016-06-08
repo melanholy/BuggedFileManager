@@ -1,60 +1,28 @@
-﻿using System.Timers;
+﻿using System;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using FileManager.Domain;
+using FileManager.Domain.Infrastructure;
 
 namespace FileManager.GUI.Controls
 {
     public partial class FileView
     {
-        private readonly Timer MouseWatcher;
-        private readonly ContextMenu NameContextMenu;
-        public FileView(ImageSource image, string name)
+        public FileView(ImageSource image, string name, FileInfo info)
         {
             InitializeComponent();
 
             Image.Source = image;
             Filename.Text = name;
-            MouseWatcher = new Timer
-            {
-                AutoReset = false,
-                Interval = 1500
-            };
-            MouseWatcher.Elapsed += MouseWatcherOnElapsed;
-            MouseEnter += (s, e) => HandleStaticMouse();
-            NameContextMenu = new ContextMenu();
-            var deleteItem = new MenuItem { Header = Filename.Text };
-            NameContextMenu.Items.Add(deleteItem);
+            var sizestr = info.Size.Value == FileSize.DirSize ? info.Size.ToString() : info.Size.ToString("N0") + " Bytes";
+            Description.Text = string.Format(
+                "{3}\r\nSize: {0}\r\nCreated: {1:yyyy MMMM dd HH:mm:ss}\r\nModified: {2: yyyy MMMM dd HH:mm:ss}",
+                sizestr, info.Created, info.Modified, name
+            );
         }
-
-        private void HandleStaticMouse()
-        {
-        }
-
-
-        private void MouseWatcherOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
-        {
-            NameContextMenu.IsOpen = true;
-            NameContextMenu.PlacementTarget = this;
-            var deleteItem = new MenuItem { Header = Filename.Text };
-            NameContextMenu.Items.Add(deleteItem);
-        }
-
-        private void OnMouseMove(object sender, MouseEventArgs mouseEventArgs)
-        {
-            MouseWatcher.Stop();
-            MouseWatcher.Start();
-        }
-
-        public BitmapImage MyImageSource
-        {
-            get { return (BitmapImage)GetValue(MyImageSourceProperty); }
-            set { SetValue(MyImageSourceProperty, value); }
-        }
-
-        public static readonly DependencyProperty MyImageSourceProperty =
-            DependencyProperty.Register("MyImageSource", typeof(BitmapImage), typeof(FileView));
     }
 }
