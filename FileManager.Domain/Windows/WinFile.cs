@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using FileManager.Domain.Infrastructure;
-using FileManager.Domain.Interfaces;
+using FileManager.Domain.Models;
 
 namespace FileManager.Domain.Windows
 {
@@ -8,12 +8,17 @@ namespace FileManager.Domain.Windows
     {
         public WinFile(MyPath path)
         {
-            var info = new System.IO.FileInfo(path.PathStr);
-            Info = new FileInfo(
-                new FileSize(info.Length), 
+            Path = path;
+            Info = GetFileInfo();
+        }
+
+        private FileInfo GetFileInfo()
+        {
+            var info = new System.IO.FileInfo(Path.PathStr);
+            return new FileInfo(
+                new FileSize(info.Length),
                 info.CreationTime, info.LastWriteTime
             );
-            Path = path;
         }
         
         public override void Create(Stream contents)

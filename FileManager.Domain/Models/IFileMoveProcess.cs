@@ -1,4 +1,4 @@
-﻿namespace FileManager.Domain.Interfaces
+﻿namespace FileManager.Domain.Models
 {
     /// <summary>
     /// Вспомогательный интерфейс для копирования/перемещения. Содержит в 

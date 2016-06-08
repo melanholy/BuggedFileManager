@@ -17,7 +17,12 @@ namespace FileManager.GUI
             InitializeComponent();
             
             var folders = WinFolder.GetRootFolders().ToArray();
-            foreach (var disk in folders.Select(folder => new Disk(folder, repo, new WinFileManager(folder)) { Header = folder.Path.GetFileName() }))
+            var disks = folders
+                .Select(folder => new Disk(folder, repo, new WinFileManager(folder))
+                    {
+                        Header = folder.Path.GetFileName()
+                    });
+            foreach (var disk in disks)
                 DiskTabs.Items.Add(disk);
 
             Active = (Disk)DiskTabs.Items[0];

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using FileManager.Domain.Infrastructure;
-using FileManager.Domain.Interfaces;
+using FileManager.Domain.Models;
 using Limilabs.FTP.Client;
 
 namespace FileManager.Domain.FTP
@@ -17,14 +17,21 @@ namespace FileManager.Domain.FTP
             if (!client.Connected)
                 throw new ArgumentException("Ftp-клиент не соединен ни с каким сервером");
             
-            
             Client = client;
             Path = path;
+            Info = GetFileInfo();
         }
 
         public FtpFile(MyPath path, Ftp client, FileInfo info) : this(path, client)
         {
             Info = info;
+        }
+
+        private FileInfo GetFileInfo()
+        {
+            var size = Client.GetFileSize(Path.PathStr);
+            var time = Client.GetFileModificationTime(Path.PathStr);
+            return new FileInfo(new FileSize(size), time, time);
         }
 
         public override void Create()

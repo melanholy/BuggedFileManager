@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using FileManager.Domain.Infrastructure;
-using FileManager.Domain.Interfaces;
+using FileManager.Domain.Models;
 using Limilabs.FTP.Client;
 
 namespace FileManager.Domain.FTP

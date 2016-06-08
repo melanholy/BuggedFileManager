@@ -52,20 +52,21 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="FileInfo.cs" />
+    <Compile Include="FTP\FtpFileManager.cs" />
     <Compile Include="Infrastructure\FileSize.cs" />
     <Compile Include="FTP\FtpFileMoveProcess.cs" />
     <Compile Include="Infrastructure\HistoryKeeper.cs" />
-    <Compile Include="Interfaces\IFileManager.cs" />
-    <Compile Include="Interfaces\MyFile.cs" />
-    <Compile Include="Interfaces\IFileMoveProcess.cs" />
+    <Compile Include="Models\BaseFileManager.cs" />
+    <Compile Include="Models\MyFile.cs" />
+    <Compile Include="Models\IFileMoveProcess.cs" />
     <Compile Include="Windows\WinFileManager.cs" />
     <Compile Include="Windows\WinFileMoveProcess.cs" />
     <Compile Include="FTP\FtpFile.cs" />
     <Compile Include="FTP\FtpFolder.cs" />
     <Compile Include="Windows\WinFile.cs" />
     <Compile Include="Windows\WinFolder.cs" />
-    <Compile Include="Interfaces\TextFile.cs" />
-    <Compile Include="Interfaces\Folder.cs" />
+    <Compile Include="Models\TextFile.cs" />
+    <Compile Include="Models\Folder.cs" />
     <Compile Include="Infrastructure\MyPath.cs" />
     <Compile Include="Infrastructure\Exceptions.cs" />
   </ItemGroup>

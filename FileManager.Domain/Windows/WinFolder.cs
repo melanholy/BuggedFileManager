@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 using FileManager.Domain.Infrastructure;
-using FileManager.Domain.Interfaces;
+using FileManager.Domain.Models;
 
 namespace FileManager.Domain.Windows
 {

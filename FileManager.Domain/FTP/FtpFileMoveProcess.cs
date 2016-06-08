@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using FileManager.Domain.Infrastructure;
-using FileManager.Domain.Interfaces;
+using FileManager.Domain.Models;
 using Limilabs.FTP.Client;
 
 namespace FileManager.Domain.FTP

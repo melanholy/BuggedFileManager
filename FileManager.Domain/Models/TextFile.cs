@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace FileManager.Domain.Interfaces
+namespace FileManager.Domain.Models
 {
     public abstract class TextFile : MyFile
     {
