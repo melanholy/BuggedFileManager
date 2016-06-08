@@ -115,7 +115,7 @@ namespace FileManager.GUI.Controls
         {
             var item = (TreeViewItem)e.OriginalSource;
             var node = item.Header as TreeNode;
-            Tree.Expand(node);
+            Tree.Expand(node); 
         }
 
         private void FileTree_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
