@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace filemanager.Infrastructure
+namespace FileManager.Domain.Infrastructure
 {
     public class FileSize
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace API
+namespace FileManager.API
 {
     /// <summary>
     /// Строка для меню, раскрывающемся при нажатии на "диск" правой кнопкой 

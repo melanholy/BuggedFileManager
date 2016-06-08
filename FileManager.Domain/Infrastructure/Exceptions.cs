@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace filemanager.Infrastructure
+namespace FileManager.Domain.Infrastructure
 {
     internal class FileAlreadyExistException : Exception { }
 }

@@ -1,4 +1,4 @@
-﻿namespace API
+﻿namespace FileManager.API
 {
     /// <summary>
     /// Вспомогательный енум для IMenuItem, показывающий, где произошел 

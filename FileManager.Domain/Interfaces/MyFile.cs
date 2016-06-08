@@ -1,6 +1,6 @@
-﻿using filemanager.Infrastructure;
+﻿using FileManager.Domain.Infrastructure;
 
-namespace filemanager.Domain.Interfaces
+namespace FileManager.Domain.Interfaces
 {
     public abstract class MyFile
     {

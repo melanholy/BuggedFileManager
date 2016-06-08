@@ -3,14 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gui="clr-namespace:FileManager.GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="FileManager" Height="350" Width="525" Icon="Resources/unnamed.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <WrapPanel Grid.Row="0">
+        <WrapPanel Grid.Row="1">
             <Button x:Name="BackButton" Width="30" Content="◀" />
             <Button x:Name="ForwardButton" Width="30" Content="▶"/>
             <Button x:Name="UpButton" Width="30" Content="▲"/>

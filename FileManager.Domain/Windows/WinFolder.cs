@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using filemanager.Domain.Interfaces;
-using filemanager.Infrastructure;
+using FileManager.Domain.Infrastructure;
+using FileManager.Domain.Interfaces;
 
-namespace filemanager.Domain.Windows
+namespace FileManager.Domain.Windows
 {
     public class WinFolder : Folder
     {
@@ -22,9 +22,9 @@ namespace filemanager.Domain.Windows
         {
             var files = Directory.EnumerateFiles(Path.PathStr);
             var dirs = Directory.EnumerateDirectories(Path.PathStr);
-            return files
-                .Select(x => (MyFile)new WinFile(new MyPath(x)))
-                .Union(dirs.Select(x => new WinFolder(new MyPath(x))));
+            return dirs
+                .Select(x => (MyFile)new WinFolder(new MyPath(x)))
+                .Union(files.Select(x => new WinFile(new MyPath(x))));
         }
 
         public override void Create()

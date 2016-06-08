@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace filemanager.Domain.Interfaces
+namespace FileManager.Domain.Interfaces
 {
     public abstract class Folder : MyFile
     {

@@ -1,7 +1,7 @@
 ﻿using FileManager.GUI.Application;
 using NUnit.Framework;
 
-namespace File_Manager.Tests
+namespace FileManager.Tests
 {
     [TestFixture]
     public class HistoryKeeperTests

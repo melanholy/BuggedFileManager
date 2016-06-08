@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
-using filemanager.Domain.Windows;
-using filemanager.Infrastructure;
+using FileManager.Domain.Infrastructure;
+using FileManager.Domain.Windows;
 using FileManager.GUI.Application;
 using FileManager.GUI.Controls;
 

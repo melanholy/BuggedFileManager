@@ -5,8 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="75" d:DesignWidth="75">
-    <DockPanel>
-        <Image Height="55" Width="75" DockPanel.Dock="Top" x:Name="Image"/>
-        <TextBlock x:Name="Filename" Height="20" Width="70" TextAlignment="Center" TextWrapping="Wrap" Text="TextBlock" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-    </DockPanel>
+    <Border BorderThickness="1" Style="{StaticResource FileBorderStyle}">
+        <DockPanel>
+            <Image Height="55" Width="75" DockPanel.Dock="Top" x:Name="Image"/>
+            <TextBlock x:Name="Filename" Height="20" Width="70" TextAlignment="Center" TextWrapping="Wrap" Text="TextBlock" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        </DockPanel>
+    </Border>
 </UserControl>

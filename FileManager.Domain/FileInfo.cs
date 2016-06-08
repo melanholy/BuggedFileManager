@@ -1,7 +1,7 @@
 ﻿using System;
-using filemanager.Infrastructure;
+using FileManager.Domain.Infrastructure;
 
-namespace filemanager.Domain
+namespace FileManager.Domain
 {
     public class FileInfo
     {

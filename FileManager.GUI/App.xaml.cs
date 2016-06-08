@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using API;
+using FileManager.API;
 using FileManager.GUI.Application;
 
 namespace FileManager.GUI

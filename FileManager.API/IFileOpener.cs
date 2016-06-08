@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace API
+namespace FileManager.API
 {
     /// <summary>
     /// Ассоциации для файлов. При дабл-клике на файл должен вызываться

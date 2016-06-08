@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace filemanager.Infrastructure
+namespace FileManager.Domain.Infrastructure
 {
 	public class MyPath
 	{

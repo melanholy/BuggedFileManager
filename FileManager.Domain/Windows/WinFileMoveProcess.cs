@@ -1,8 +1,8 @@
 ﻿using System;
-using filemanager.Domain.Interfaces;
-using filemanager.Infrastructure;
+using FileManager.Domain.Infrastructure;
+using FileManager.Domain.Interfaces;
 
-namespace filemanager.Domain.Windows
+namespace FileManager.Domain.Windows
 {
     public class WinFileMoveProcess : IFileMoveProcess
     {

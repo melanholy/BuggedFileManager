@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using filemanager.Domain.Interfaces;
-using filemanager.Infrastructure;
+using FileManager.Domain.Infrastructure;
+using FileManager.Domain.Interfaces;
 using Limilabs.FTP.Client;
 
-namespace filemanager.Domain.FTP
+namespace FileManager.Domain.FTP
 {
     public class FtpFolder : Folder
     {

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using filemanager.Domain.Interfaces;
-using filemanager.Infrastructure;
+using FileManager.Domain.Infrastructure;
+using FileManager.Domain.Interfaces;
 using FileManager.GUI.Application;
 
 namespace FileManager.GUI.Controls
@@ -15,6 +16,7 @@ namespace FileManager.GUI.Controls
         private readonly HistoryKeeper<MyPath> History;
         private static readonly BitmapImage FolderIcon  = new BitmapImage(new Uri(@"pack://application:,,,/gfilemanager;component/Resources/folder.bmp"));
         private static readonly BitmapImage FileIcon = new BitmapImage(new Uri(@"pack://application:,,,/gfilemanager;component/Resources/file.bmp"));
+        private readonly FileTree Tree;
 
         public event Action<MyPath> PathChanged;
         
@@ -25,6 +27,9 @@ namespace FileManager.GUI.Controls
             History = new HistoryKeeper<MyPath>(root.Path);
             Current = root.Path;
             PutFilesOnPanel(root.EnumerateFiles());
+            
+            Tree = new FileTree(root);
+            FileTree.ItemsSource = new [] { Tree.Root };
         }
 
         public void GoBackward()
@@ -104,6 +109,23 @@ namespace FileManager.GUI.Controls
             {
                 var folder = (Folder)file;
             }
+        }
+
+        private void FileTree_OnExpanded(object sender, RoutedEventArgs e)
+        {
+            var item = (TreeViewItem)e.OriginalSource;
+            var node = item.Header as TreeNode;
+            Tree.Expand(node);
+        }
+
+        private void FileTree_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            var node = (TreeNode)e.NewValue;
+            if (!(node.File is Folder))
+                return;
+
+            var dir = (Folder)node.File;
+            PutFilesOnPanel(dir.EnumerateFiles());
         }
     }
 }
