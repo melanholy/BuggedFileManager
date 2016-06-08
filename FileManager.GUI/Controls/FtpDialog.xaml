@@ -1,0 +1,18 @@
+﻿<Window x:Class="FileManager.GUI.Controls.FtpDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileManager.GUI.Controls"
+        mc:Ignorable="d"
+        Title="FTP Connect" Width="177" Height="190">
+    <StackPanel>
+        <TextBlock Text="Server address:" Margin="4,1"/>
+        <TextBox Name="AddressTextBox" Margin="4,1"/>
+        <TextBlock Text="Login:" Margin="4,1"/>
+        <TextBox Name="LoginTextBox" Margin="4,1"/>
+        <TextBlock Text="Password:" Margin="4,1"/>
+        <TextBox Name="PasswordTextBox" Margin="4,1"/>
+        <Button Content="OK" Width="40" Click="ButtonBase_OnClick" Margin="4,1"/>
+    </StackPanel>
+</Window>

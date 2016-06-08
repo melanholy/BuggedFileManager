@@ -11,18 +11,20 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-        <WrapPanel Grid.Row="0">
+        <DockPanel Grid.Row="0">
             <Button x:Name="BackButton" Width="30" Content="◀" Click="BackButton_OnClick"
-                    Focusable="False"/>
+                    Focusable="False" DockPanel.Dock="Left"/>
             <Button x:Name="ForwardButton" Width="30" Content="▶" Click="ForwardButton_OnClick"
-                    Focusable="False" />
+                    Focusable="False" DockPanel.Dock="Left"/>
             <Button x:Name="UpButton" Width="30" Content="▲" Click="UpButton_OnClick" 
-                    Focusable="False" />
-        </WrapPanel>
+                    Focusable="False" DockPanel.Dock="Left"/>
+            <Button x:Name="FtpConnect" Content="Connect to FTP" 
+                    Focusable="False" HorizontalAlignment="Right" Padding="5,0" Click="FtpConnect_Click"/>
+        </DockPanel>
         <DockPanel Grid.Row="1" LastChildFill="True">
             <TextBox DockPanel.Dock="Top" x:Name="PathTextBox" Height="23" TextWrapping="Wrap" 
                      KeyUp="PathTextBox_OnKeyUp"/>
-            <TabControl DockPanel.Dock="Bottom" Name="DiskTabs"></TabControl>
+            <TabControl DockPanel.Dock="Bottom" Name="DiskTabs" />
         </DockPanel>
     </Grid>
 </Window>

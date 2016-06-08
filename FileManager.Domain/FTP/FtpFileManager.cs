@@ -39,6 +39,7 @@ namespace FileManager.Domain.FTP
             if (!folder.Exists())
                 throw new DirectoryNotFoundException();
 
+            CurrentPath = path;
             return folder;
         }
     }
