@@ -67,7 +67,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Application\HistoryKeeper.cs" />
     <Compile Include="Application\PluginRepo.cs" />
     <Compile Include="Controls\Disk.xaml.cs">
       <DependentUpon>Disk.xaml</DependentUpon>

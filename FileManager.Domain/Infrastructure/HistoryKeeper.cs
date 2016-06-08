@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FileManager.GUI.Application
+namespace FileManager.Domain.Infrastructure
 {
     public class EmptyHistoryException : Exception { }
 

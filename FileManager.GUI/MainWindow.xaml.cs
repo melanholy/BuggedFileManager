@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using FileManager.Domain.Infrastructure;
@@ -18,7 +17,7 @@ namespace FileManager.GUI
             InitializeComponent();
             
             var folders = WinFolder.GetRootFolders().ToArray();
-            foreach (var disk in folders.Select(folder => new Disk(folder, repo) { Header = folder.Path.GetFileName() }))
+            foreach (var disk in folders.Select(folder => new Disk(folder, repo, new WinFileManager(folder)) { Header = folder.Path.GetFileName() }))
                 DiskTabs.Items.Add(disk);
 
             Active = (Disk)DiskTabs.Items[0];

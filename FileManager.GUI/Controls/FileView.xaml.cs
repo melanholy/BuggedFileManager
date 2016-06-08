@@ -1,16 +1,51 @@
-﻿using System.Windows;
+﻿using System.Timers;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace FileManager.GUI.Controls
 {
     public partial class FileView
     {
-        public FileView(BitmapImage image, string name)
+        private readonly Timer MouseWatcher;
+        private readonly ContextMenu NameContextMenu;
+        public FileView(ImageSource image, string name)
         {
             InitializeComponent();
 
             Image.Source = image;
             Filename.Text = name;
+            MouseWatcher = new Timer
+            {
+                AutoReset = false,
+                Interval = 1500
+            };
+            MouseWatcher.Elapsed += MouseWatcherOnElapsed;
+            MouseEnter += (s, e) => HandleStaticMouse();
+            NameContextMenu = new ContextMenu();
+            var deleteItem = new MenuItem { Header = Filename.Text };
+            NameContextMenu.Items.Add(deleteItem);
+        }
+
+        private void HandleStaticMouse()
+        {
+        }
+
+
+        private void MouseWatcherOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
+        {
+            NameContextMenu.IsOpen = true;
+            NameContextMenu.PlacementTarget = this;
+            var deleteItem = new MenuItem { Header = Filename.Text };
+            NameContextMenu.Items.Add(deleteItem);
+        }
+
+        private void OnMouseMove(object sender, MouseEventArgs mouseEventArgs)
+        {
+            MouseWatcher.Stop();
+            MouseWatcher.Start();
         }
 
         public BitmapImage MyImageSource

@@ -35,6 +35,12 @@ namespace FileManager.Domain.Infrastructure
             return name == "" ? PathStr : name;
 		}
 
+	    public MyPath GetDirectory()
+	    {
+            var idx = PathStr.LastIndexOf("/", StringComparison.Ordinal);
+            return new MyPath(PathStr.Substring(idx));
+        }
+
 		public string GetExt()
 		{
 		    var idx = PathStr.LastIndexOf(".", StringComparison.Ordinal);

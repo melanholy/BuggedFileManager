@@ -1,4 +1,4 @@
-﻿using FileManager.GUI.Application;
+﻿using FileManager.Domain.Infrastructure;
 using NUnit.Framework;
 
 namespace FileManager.Tests

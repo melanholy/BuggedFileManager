@@ -13,7 +13,7 @@ namespace FileManager.GUI
     {
         private const string PluginsPath = "plugins/";
 
-        public static IEnumerable<string> GetPluginFiles()
+        private static IEnumerable<string> GetPluginFiles()
         {
             if (!Directory.Exists(PluginsPath))
                 throw new DirectoryNotFoundException();
