@@ -14,8 +14,6 @@ namespace FileManager.Domain.FTP
 
         public FtpFolder(MyPath path, Ftp client)
         {
-            if (!client.IsMutuallyAuthenticated)
-                throw new ArgumentException("Ftp-клиент не авторизован");
             if (!client.Connected)
                 throw new ArgumentException("Ftp-клиент не соединен ни с каким сервером");
             

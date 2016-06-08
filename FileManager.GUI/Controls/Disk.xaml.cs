@@ -97,6 +97,7 @@ namespace FileManager.GUI.Controls
         public void GoToFolder(MyPath path)
         {
             var folder = Manager.Go(path);
+            PutFilesOnPanel(folder.EnumerateFiles());
             PathChanged?.Invoke(Current);
         }
 

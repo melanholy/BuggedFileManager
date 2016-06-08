@@ -34,6 +34,7 @@ namespace FileManager.Domain.Windows
             if (!folder.Exists())
                 throw new DirectoryNotFoundException();
 
+            CurrentPath = path;
             return folder;
         }
     }
