@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using FileManager.Domain.Infrastructure;
 using FileManager.Domain.Windows;
 using FileManager.GUI.Application;
@@ -16,43 +18,44 @@ namespace FileManager.GUI
             InitializeComponent();
             
             var folders = WinFolder.GetRootFolders().ToArray();
-            foreach (var disk in folders.Select(folder => new Disk(folder) { Header = folder.Path.GetFileName() }))
+            foreach (var disk in folders.Select(folder => new Disk(folder, repo) { Header = folder.Path.GetFileName() }))
                 DiskTabs.Items.Add(disk);
 
             Active = (Disk)DiskTabs.Items[0];
             Active.PathChanged += SetPathText;
-            SetPathText(Active.Current);
-            DiskTabs.SelectionChanged += (sender, args) => ChangeActiveManager();
+            SetPathText(folders[0].Path);
+            DiskTabs.SelectionChanged += ChangeActiveManager;
             DiskTabs.SelectedIndex = 0;
         }
         
-        private void ChangeActiveManager()
+        private void ChangeActiveManager(object sender, SelectionChangedEventArgs e)
         {
-            BackButton.Click -= BackButtonOnClick;
-            ForwardButton.Click -= ForwardButtonOnClick;
             Active.PathChanged -= SetPathText;
 
             Active = (Disk)DiskTabs.SelectedItem;
 
             SetPathText(Active.Current);
             Active.PathChanged += SetPathText;
-            BackButton.Click += BackButtonOnClick;
-            ForwardButton.Click += ForwardButtonOnClick;
         }
 
         private void SetPathText(MyPath path)
         {
-            textBox.Text = path.PathStr;
+            PathTextBox.Text = path.PathStr;
         }
 
-        private void ForwardButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
+        private void BackButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Active.GoBackward();
+        }
+
+        private void ForwardButton_OnClick(object sender, RoutedEventArgs e)
         {
             Active.GoForward();
         }
 
-        private void BackButtonOnClick(object sender, RoutedEventArgs routedEventArgs)
+        private void UpButton_OnClick(object sender, RoutedEventArgs e)
         {
-            Active.GoBackward();
+            Active.GoUp();
         }
     }
 }

@@ -12,12 +12,12 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="1">
-            <Button x:Name="BackButton" Width="30" Content="◀" />
-            <Button x:Name="ForwardButton" Width="30" Content="▶"/>
-            <Button x:Name="UpButton" Width="30" Content="▲"/>
+            <Button x:Name="BackButton" Width="30" Content="◀" Click="BackButton_OnClick"/>
+            <Button x:Name="ForwardButton" Width="30" Content="▶" Click="ForwardButton_OnClick"/>
+            <Button x:Name="UpButton" Width="30" Content="▲" Click="UpButton_OnClick"/>
         </WrapPanel>
         <DockPanel Grid.Row="1" LastChildFill="True">
-            <TextBox DockPanel.Dock="Top" x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox"/>
+            <TextBox DockPanel.Dock="Top" x:Name="PathTextBox" Height="23" TextWrapping="Wrap" />
             <TabControl DockPanel.Dock="Bottom" Name="DiskTabs"></TabControl>
         </DockPanel>
     </Grid>

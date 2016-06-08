@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using FileManager.Domain.FTP;
 using FileManager.Domain.Infrastructure;
 using FileManager.Domain.Interfaces;
 using FileManager.GUI.Application;
@@ -13,35 +14,65 @@ namespace FileManager.GUI.Controls
     public partial class Disk
     {
         public MyPath Current;
-        private readonly HistoryKeeper<MyPath> History;
+        private readonly HistoryKeeper<Folder> History;
         private static readonly BitmapImage FolderIcon  = new BitmapImage(new Uri(@"pack://application:,,,/gfilemanager;component/Resources/folder.bmp"));
         private static readonly BitmapImage FileIcon = new BitmapImage(new Uri(@"pack://application:,,,/gfilemanager;component/Resources/file.bmp"));
         private readonly FileTree Tree;
+        private readonly PluginRepo Repo;
 
         public event Action<MyPath> PathChanged;
         
-        public Disk(Folder root)
+        public Disk(Folder root, PluginRepo repo)
         {
             InitializeComponent();
             
-            History = new HistoryKeeper<MyPath>(root.Path);
+            History = new HistoryKeeper<Folder>(root);
             Current = root.Path;
             PutFilesOnPanel(root.EnumerateFiles());
-            
+
+            Repo = repo;
+
             Tree = new FileTree(root);
             FileTree.ItemsSource = new [] { Tree.Root };
         }
 
         public void GoBackward()
         {
-            Current = History.GoBack();
-            PathChanged?.Invoke(Current);
+            try
+            {
+                var folder = History.GoBack();
+                Current = folder.Path;
+                PathChanged?.Invoke(Current);
+                PutFilesOnPanel(folder.EnumerateFiles());
+            }
+            catch (InvalidOperationException)
+            { }
         }
 
         public void GoForward()
         {
-            Current = History.GoForward();
-            PathChanged?.Invoke(Current);
+            try
+            {
+                var folder = History.GoForward();
+                Current = folder.Path;
+                PathChanged?.Invoke(Current);
+                PutFilesOnPanel(folder.EnumerateFiles());
+            }
+            catch (InvalidOperationException)
+            { }
+        }
+
+        public void GoUp()
+        {
+            return;
+            //try
+            //{
+            //    Current = History.Do();
+            //    PathChanged?.Invoke(Current);
+            //    PutFilesOnPanel(new WinFolder(Current).EnumerateFiles());
+            //}
+            //catch (InvalidOperationException)
+            //{ }
         }
 
         private void WrapPanelOnMouseUp(object sender, MouseButtonEventArgs mouseButtonEventArgs)
@@ -102,12 +133,24 @@ namespace FileManager.GUI.Controls
                 WrapPanel.Children.Add(folderView);
             }
         }
-        
+
         private void FolderViewOnMouseDoubleClick(MyFile file)
         {
             if (file is Folder)
             {
                 var folder = (Folder)file;
+                PutFilesOnPanel(folder.EnumerateFiles());
+                History.Do(folder);
+                Current = folder.Path;
+                PathChanged?.Invoke(Current);
+            }
+            if (file is TextFile)
+            {
+                file = (TextFile)file;
+                object result;
+                if (Repo.TryGet(file.Path.GetExt(), out result))
+                {
+                }
             }
         }
 
