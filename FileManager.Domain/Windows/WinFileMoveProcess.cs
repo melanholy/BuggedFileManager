@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using FileManager.Domain.Infrastructure;
 using FileManager.Domain.Interfaces;
 
@@ -15,6 +16,15 @@ namespace FileManager.Domain.Windows
             KeepOriginal = keepOriginal;
         }
 
+        private void MoveFile(TextFile destFile)
+        {
+            using (var stream = System.IO.File.OpenRead(destFile.Path.PathStr))
+                destFile.Create(stream);
+
+            if (!KeepOriginal)
+                System.IO.File.Delete(File.Path.PathStr);
+        }
+
         public void To(MyFile destFile)
         {
             if (File is WinFile)
@@ -22,12 +32,7 @@ namespace FileManager.Domain.Windows
                 if (System.IO.File.Exists(destFile.Path.PathStr))
                     throw new FileAlreadyExistException();
 
-                var file = (TextFile)destFile;
-                using (var stream = System.IO.File.OpenRead(file.Path.PathStr))
-                    file.Create(stream);
-
-                if (!KeepOriginal)
-                    System.IO.File.Delete(File.Path.PathStr);
+                MoveFile((TextFile)destFile);
             }
             else if (File is WinFolder)
             {

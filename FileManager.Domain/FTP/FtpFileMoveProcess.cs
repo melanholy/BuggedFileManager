@@ -21,28 +21,31 @@ namespace FileManager.Domain.FTP
             KeepOriginal = keepOriginal;
             Client = client;
         }
+
+        private void MoveFile(TextFile destFile)
+        {
+            using (var stream = new MemoryStream())
+            {
+                Client.Download(File.Path.PathStr, stream);
+                destFile.Create(stream);
+            }
+
+            if (!KeepOriginal)
+                Client.DeleteFile(File.Path.PathStr);
+        }
         
         public void To(MyFile destFile)
         {
             if (File is FtpFile)
             {
-                var file = (TextFile)destFile;
-
-                if (Client.FileExists(file.Path.ToString()))
+                if (Client.FileExists(destFile.Path.PathStr))
                     throw new FileAlreadyExistException();
 
-                using (var stream = new MemoryStream())
-                {
-                    Client.Download(File.Path.ToString(), stream);
-                    file.Create(stream);
-                }
-
-                if (!KeepOriginal)
-                    Client.DeleteFile(File.Path.ToString());
+                MoveFile((TextFile)destFile);
             }
             else if (File is FtpFolder)
             {
-                if (Client.FolderExists(destFile.Path.ToString()))
+                if (Client.FolderExists(destFile.Path.PathStr))
                     throw new FileAlreadyExistException();
 
                 var folder = (FtpFolder) File;
