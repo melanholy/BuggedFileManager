@@ -1,6 +1,8 @@
 ﻿using System.Windows.Media;
 using FileManager.Domain;
 using FileManager.Domain.Infrastructure;
+using FileManager.Domain.Models;
+using FileManager.Domain.Models.Files;
 
 namespace FileManager.GUI.Controls
 {

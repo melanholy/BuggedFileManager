@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace FileManager.Domain.Infrastructure
 {
-    public class EmptyHistoryException : Exception { }
-
 	public class HistoryKeeper<TObject>
 	{
 		private TObject Current;

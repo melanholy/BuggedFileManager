@@ -2,9 +2,10 @@
 using System.IO;
 using System.Linq;
 using FileManager.Domain.Infrastructure;
-using FileManager.Domain.Models;
+using FileManager.Domain.Models.Files;
+using FileInfo = FileManager.Domain.Models.Files.FileInfo;
 
-namespace FileManager.Domain.Windows
+namespace FileManager.Domain.Models.Windows
 {
     public class WinFolder : Folder
     {

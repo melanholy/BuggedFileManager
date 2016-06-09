@@ -1,8 +1,8 @@
 using System.IO;
 using FileManager.Domain.Infrastructure;
-using FileManager.Domain.Models;
+using FileManager.Domain.Models.Files;
 
-namespace FileManager.Domain.Windows
+namespace FileManager.Domain.Models.Windows
 {
     public class WinFileManager : FileManagerWithHistory
     {
@@ -22,8 +22,7 @@ namespace FileManager.Domain.Windows
 
         public override Folder GoUp()
         {
-            CurrentPath = CurrentPath.GetDirectory();
-            return new WinFolder(CurrentPath);
+            return Go(CurrentPath.GetDirectory());
         }
 
         public override void Create<TFile>(string filename)
@@ -42,7 +41,7 @@ namespace FileManager.Domain.Windows
             if (!folder.Exists())
                 throw new DirectoryNotFoundException();
 
-            CurrentPath = path;
+            Go(folder);
             return folder;
         }
     }

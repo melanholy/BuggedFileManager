@@ -1,10 +1,11 @@
 ﻿using System;
 using System.IO;
 using FileManager.Domain.Infrastructure;
-using FileManager.Domain.Models;
+using FileManager.Domain.Models.Files;
 using Limilabs.FTP.Client;
+using FileInfo = FileManager.Domain.Models.Files.FileInfo;
 
-namespace FileManager.Domain.FTP
+namespace FileManager.Domain.Models.FTP
 {
     public class FtpFile : TextFile
     {

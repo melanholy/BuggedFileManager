@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using FileManager.Domain.Infrastructure;
 using FileManager.Domain.Models;
+using FileManager.Domain.Models.Files;
 using FileManager.GUI.Application;
 
 namespace FileManager.GUI.Controls

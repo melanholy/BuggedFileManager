@@ -1,4 +1,5 @@
 ﻿using FileManager.Domain.Infrastructure;
+using FileManager.Domain.Models.Files;
 
 namespace FileManager.Domain.Models
 {

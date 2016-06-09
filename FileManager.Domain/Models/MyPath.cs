@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace FileManager.Domain.Infrastructure
+namespace FileManager.Domain.Models
 {
 	public class MyPath
 	{
@@ -12,7 +12,9 @@ namespace FileManager.Domain.Infrastructure
             if (pathStr == null)
                 throw new ArgumentException();
 
-		    pathStr = pathStr.Replace("\\", "/");
+		    pathStr = Regex.Replace(pathStr, "(?:\\+)|(?://+)", "/");
+		    if (pathStr.IndexOf("/", StringComparison.Ordinal) != pathStr.LastIndexOf("/", StringComparison.Ordinal))
+		        pathStr = pathStr.TrimEnd('/');
             if (!IsCorrectMyPath(pathStr))
                 throw new ArgumentException();
 			PathStr = pathStr;
@@ -38,7 +40,13 @@ namespace FileManager.Domain.Infrastructure
 	    public MyPath GetDirectory()
 	    {
             var idx = PathStr.LastIndexOf("/", StringComparison.Ordinal);
-            return new MyPath(PathStr.Substring(idx));
+	        string str;
+	        if (idx == PathStr.IndexOf("/", StringComparison.Ordinal))
+	            str = PathStr.Substring(0, idx + 1);
+	        else
+	            str = PathStr.Substring(0, idx);
+
+            return new MyPath(str);
         }
 
 		public string GetExt()

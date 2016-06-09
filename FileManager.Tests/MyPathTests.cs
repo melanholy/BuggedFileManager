@@ -1,4 +1,4 @@
-﻿using FileManager.Domain.Infrastructure;
+﻿using FileManager.Domain.Models;
 using NUnit.Framework;
 
 namespace FileManager.Tests
@@ -78,6 +78,32 @@ namespace FileManager.Tests
             Assert.AreEqual("folder", p.GetFileName());
             p = new MyPath("/i/hope/test.is.over");
             Assert.AreEqual("test.is.over", p.GetFileName());
+        }
+
+        [Test]
+        public void TestGetDirectoryUnix()
+        {
+            var p = new MyPath("/");
+            Assert.AreEqual("/", p.GetDirectory().PathStr);
+            p = new MyPath("/fallback");
+            Assert.AreEqual("/", p.GetDirectory().PathStr);
+            p = new MyPath("/fallback/////");
+            Assert.AreEqual("/", p.GetDirectory().PathStr);
+            p = new MyPath("/fall//back//");
+            Assert.AreEqual("/fall", p.GetDirectory().PathStr);
+        }
+
+        [Test]
+        public void TestGetDirectoryWin()
+        {
+            var p = new MyPath("C:/");
+            Assert.AreEqual("C:/", p.GetDirectory().PathStr);
+            p = new MyPath("C:/fallback");
+            Assert.AreEqual("C:/", p.GetDirectory().PathStr);
+            p = new MyPath("C:/fallback/////");
+            Assert.AreEqual("C:/", p.GetDirectory().PathStr);
+            p = new MyPath("C:/fall//back//");
+            Assert.AreEqual("C:/fall", p.GetDirectory().PathStr);
         }
     }
 }

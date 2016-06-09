@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FileManager.Domain.Infrastructure
+namespace FileManager.Domain.Models.Files
 {
     public class FileSize
     {
