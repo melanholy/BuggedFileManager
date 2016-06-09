@@ -60,7 +60,7 @@
     <Compile Include="Models\BaseFileManager.cs" />
     <Compile Include="Models\FileManagerWithHistory.cs" />
     <Compile Include="Models\Files\MyFile.cs" />
-    <Compile Include="Models\IFileMoveProcess.cs" />
+    <Compile Include="Models\Files\IFileMoveProcess.cs" />
     <Compile Include="Models\Windows\WinFileManager.cs" />
     <Compile Include="Models\Windows\WinFileMoveProcess.cs" />
     <Compile Include="Models\FTP\FtpFile.cs" />
