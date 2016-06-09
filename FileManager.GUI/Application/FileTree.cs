@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FileManager.Domain.Models;
 using FileManager.Domain.Models.Files;
 
 namespace FileManager.GUI.Application
