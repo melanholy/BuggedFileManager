@@ -1,8 +1,8 @@
 ﻿using System;
 using FileManager.Domain.Infrastructure;
-using FileManager.Domain.Models;
+using FileManager.Domain.Models.Files;
 
-namespace FileManager.Domain.Windows
+namespace FileManager.Domain.Models.Windows
 {
     public class WinFileMoveProcess : IFileMoveProcess
     {
@@ -34,7 +34,7 @@ namespace FileManager.Domain.Windows
             else if (File is WinFolder)
             {
                 var folder = (WinFolder)File;
-
+                FolderCopier.Copy(folder, (Folder)destFile, MoveFile);
             }
             else
                 throw new ArgumentException();

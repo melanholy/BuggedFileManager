@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using FileManager.Domain.Infrastructure;
-using FileManager.Domain.Models;
+using FileManager.Domain.Models.Files;
 using Limilabs.FTP.Client;
+using FileInfo = FileManager.Domain.Models.Files.FileInfo;
 
-namespace FileManager.Domain.FTP
+namespace FileManager.Domain.Models.FTP
 {
     public class FtpFolder : Folder
     {
@@ -40,14 +41,6 @@ namespace FileManager.Domain.FTP
                 throw new FileNotFoundException();
 
             Client.DeleteFolderRecursively(Path.PathStr);
-        }
-
-        public override IFileMoveProcess Move(bool keepOriginal)
-        {
-            if (!Exists())
-                throw new FileNotFoundException();
-
-            return new FtpFileMoveProcess(this, keepOriginal, Client);
         }
 
         public override bool Exists()

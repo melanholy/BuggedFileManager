@@ -1,10 +1,10 @@
 using System.IO;
 using FileManager.Domain.Infrastructure;
-using FileManager.Domain.Models;
+using FileManager.Domain.Models.Files;
 
-namespace FileManager.Domain.Windows
+namespace FileManager.Domain.Models.Windows
 {
-    public class WinFileManager : BaseFileManager
+    public class WinFileManager : FileManagerWithHistory
     {
         public WinFileManager(Folder root)
         {
@@ -12,10 +12,17 @@ namespace FileManager.Domain.Windows
             History = new HistoryKeeper<Folder>(root);
         }
 
+        public override IFileMoveProcess Move(MyFile file, bool keepOriginal)
+        {
+            if (!file.Exists())
+                throw new FileNotFoundException();
+
+            return new WinFileMoveProcess(file, keepOriginal);
+        }
+
         public override Folder GoUp()
         {
-            CurrentPath = CurrentPath.GetDirectory();
-            return new WinFolder(CurrentPath);
+            return Go(CurrentPath.GetDirectory());
         }
 
         public override void Create<TFile>(string filename)
@@ -34,7 +41,7 @@ namespace FileManager.Domain.Windows
             if (!folder.Exists())
                 throw new DirectoryNotFoundException();
 
-            CurrentPath = path;
+            Go(folder);
             return folder;
         }
     }

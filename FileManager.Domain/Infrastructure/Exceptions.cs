@@ -2,5 +2,6 @@
 
 namespace FileManager.Domain.Infrastructure
 {
-    internal class FileAlreadyExistException : Exception { }
+    public class EmptyHistoryException : Exception { }
+    public class FileAlreadyExistException : Exception { }
 }

@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using FileManager.Domain.Infrastructure;
 using FileManager.Domain.Models;
+using FileManager.Domain.Models.Files;
 using FileManager.GUI.Application;
 
 namespace FileManager.GUI.Controls
@@ -13,7 +14,7 @@ namespace FileManager.GUI.Controls
     public partial class Disk
     {
         public MyPath Current => Manager.CurrentPath;
-        private readonly BaseFileManager Manager;
+        private readonly FileManagerWithHistory Manager;
         private static readonly BitmapImage FolderIcon  = new BitmapImage(
             new Uri(@"pack://application:,,,/gfilemanager;component/Resources/folder.bmp"));
         private static readonly BitmapImage FileIcon = new BitmapImage(
@@ -23,7 +24,7 @@ namespace FileManager.GUI.Controls
 
         public event Action<MyPath> PathChanged;
         
-        public Disk(Folder root, PluginRepo repo, BaseFileManager manager)
+        public Disk(Folder root, PluginRepo repo, FileManagerWithHistory manager)
         {
             InitializeComponent();
             

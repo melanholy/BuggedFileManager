@@ -1,6 +1,4 @@
-﻿using FileManager.Domain.Infrastructure;
-
-namespace FileManager.Domain.Models
+﻿namespace FileManager.Domain.Models.Files
 {
     public abstract class MyFile
     {
@@ -8,7 +6,6 @@ namespace FileManager.Domain.Models
         public FileInfo Info { get; protected set; }
         public abstract void Create();
         public abstract void Delete();
-        public abstract IFileMoveProcess Move(bool keepOriginal);
         public abstract bool Exists();
     }
 }

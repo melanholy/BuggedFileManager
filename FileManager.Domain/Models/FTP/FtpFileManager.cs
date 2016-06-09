@@ -1,12 +1,11 @@
 ﻿using System.IO;
 using FileManager.Domain.Infrastructure;
-using FileManager.Domain.Models;
-using FileManager.Domain.Windows;
+using FileManager.Domain.Models.Files;
 using Limilabs.FTP.Client;
 
-namespace FileManager.Domain.FTP
+namespace FileManager.Domain.Models.FTP
 {
-    public class FtpFileManager : BaseFileManager
+    public class FtpFileManager : FileManagerWithHistory
     {
         private readonly Ftp Client;
 
@@ -19,8 +18,7 @@ namespace FileManager.Domain.FTP
         
         public override Folder GoUp()
         {
-            CurrentPath = CurrentPath.GetDirectory();
-            return new WinFolder(CurrentPath);
+            return Go(CurrentPath.GetDirectory());
         }
 
         public override void Create<TFile>(string filename)
@@ -33,13 +31,21 @@ namespace FileManager.Domain.FTP
             file.Create();
         }
 
+        public override IFileMoveProcess Move(MyFile file, bool keepOriginal)
+        {
+            if (!file.Exists())
+                throw new FileNotFoundException();
+
+            return new FtpFileMoveProcess(file, keepOriginal, Client);
+        }
+
         public override Folder Go(MyPath path)
         {
             var folder = new FtpFolder(path, Client);
             if (!folder.Exists())
                 throw new DirectoryNotFoundException();
-
-            CurrentPath = path;
+            
+            Go(folder);
             return folder;
         }
     }

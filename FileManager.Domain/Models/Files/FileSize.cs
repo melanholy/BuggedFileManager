@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FileManager.Domain.Infrastructure
+namespace FileManager.Domain.Models.Files
 {
     public class FileSize
     {
@@ -14,11 +14,6 @@ namespace FileManager.Domain.Infrastructure
                 throw new ArgumentException();
 
             Value = value;
-        }
-
-        public string ToString(string format="")
-        {
-            return Value == -1 ? "<DIR>" : Value.ToString(format);
         }
     }
 }
