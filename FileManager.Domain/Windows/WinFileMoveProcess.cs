@@ -34,7 +34,7 @@ namespace FileManager.Domain.Windows
             else if (File is WinFolder)
             {
                 var folder = (WinFolder)File;
-
+                FolderCopier.Copy(folder, (Folder)destFile, MoveFile);
             }
             else
                 throw new ArgumentException();

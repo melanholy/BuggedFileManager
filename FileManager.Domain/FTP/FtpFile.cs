@@ -56,14 +56,6 @@ namespace FileManager.Domain.FTP
             Client.DeleteFile(Path.PathStr);
         }
 
-        public override IFileMoveProcess Move(bool keepOriginal)
-        {
-            if (!Exists())
-                throw new FileNotFoundException();
-
-            return new FtpFileMoveProcess(this, keepOriginal, Client);
-        }
-
         public override bool Exists()
         {
             return Client.FileExists(Path.PathStr);

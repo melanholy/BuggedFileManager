@@ -44,7 +44,7 @@ namespace FileManager.Domain.FTP
             else if (File is FtpFolder)
             {
                 var folder = (FtpFolder) File;
-
+                FolderCopier.Copy(folder, (Folder)destFile, MoveFile);
             }
             else
                 throw new ArgumentException();

@@ -43,14 +43,6 @@ namespace FileManager.Domain.Windows
             Directory.Delete(Path.PathStr, true);
         }
 
-        public override IFileMoveProcess Move(bool keepOriginal)
-        {
-            if (!Exists())
-                throw new FileNotFoundException();
-
-            return new WinFileMoveProcess(this, keepOriginal);
-        }
-
         public override bool Exists()
         {
             return Directory.Exists(Path.PathStr);

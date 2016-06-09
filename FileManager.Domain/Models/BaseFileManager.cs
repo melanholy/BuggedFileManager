@@ -4,27 +4,11 @@ namespace FileManager.Domain.Models
 {
     public abstract class BaseFileManager
     {
-        protected HistoryKeeper<Folder> History;
         public MyPath CurrentPath { get; protected set; }
-
-        public Folder GoForward()
-        {
-            var folder = History.GoForward();
-            CurrentPath = folder.Path;
-            return folder;
-        }
-
-        public Folder GoBack()
-        {
-            var folder = History.GoBack();
-            CurrentPath = folder.Path;
-            return folder;
-        }
-
-        public void Go(Folder folder)
+        
+        public virtual void Go(Folder folder)
         {
             CurrentPath = folder.Path;
-            History.Do(folder);
         }
 
         public void Delete(MyFile file)
@@ -32,6 +16,7 @@ namespace FileManager.Domain.Models
             file.Delete();
         }
 
+        public abstract IFileMoveProcess Move(MyFile file, bool keepOriginal);
         public abstract Folder GoUp();
         public abstract void Create<TFile>(string filename) where TFile : MyFile;
         public abstract Folder Go(MyPath path);

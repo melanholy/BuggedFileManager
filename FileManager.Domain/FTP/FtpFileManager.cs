@@ -6,7 +6,7 @@ using Limilabs.FTP.Client;
 
 namespace FileManager.Domain.FTP
 {
-    public class FtpFileManager : BaseFileManager
+    public class FtpFileManager : FileManagerWithHistory
     {
         private readonly Ftp Client;
 
@@ -31,6 +31,14 @@ namespace FileManager.Domain.FTP
             else
                 file = new FtpFolder(CurrentPath.Join(filename), Client);
             file.Create();
+        }
+
+        public override IFileMoveProcess Move(MyFile file, bool keepOriginal)
+        {
+            if (!file.Exists())
+                throw new FileNotFoundException();
+
+            return new FtpFileMoveProcess(file, keepOriginal, Client);
         }
 
         public override Folder Go(MyPath path)

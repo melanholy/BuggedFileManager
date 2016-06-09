@@ -4,12 +4,20 @@ using FileManager.Domain.Models;
 
 namespace FileManager.Domain.Windows
 {
-    public class WinFileManager : BaseFileManager
+    public class WinFileManager : FileManagerWithHistory
     {
         public WinFileManager(Folder root)
         {
             CurrentPath = root.Path;
             History = new HistoryKeeper<Folder>(root);
+        }
+
+        public override IFileMoveProcess Move(MyFile file, bool keepOriginal)
+        {
+            if (!file.Exists())
+                throw new FileNotFoundException();
+
+            return new WinFileMoveProcess(file, keepOriginal);
         }
 
         public override Folder GoUp()

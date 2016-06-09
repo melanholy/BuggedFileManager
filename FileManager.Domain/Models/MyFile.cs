@@ -8,7 +8,6 @@ namespace FileManager.Domain.Models
         public FileInfo Info { get; protected set; }
         public abstract void Create();
         public abstract void Delete();
-        public abstract IFileMoveProcess Move(bool keepOriginal);
         public abstract bool Exists();
     }
 }

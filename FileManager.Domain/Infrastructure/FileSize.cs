@@ -15,10 +15,5 @@ namespace FileManager.Domain.Infrastructure
 
             Value = value;
         }
-
-        public string ToString(string format="")
-        {
-            return Value == -1 ? "<DIR>" : Value.ToString(format);
-        }
     }
 }
