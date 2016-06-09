@@ -12,7 +12,7 @@ namespace FileManager.Domain.Models
             if (pathStr == null)
                 throw new ArgumentException();
 
-		    pathStr = Regex.Replace(pathStr, "(?:\\+)|(?://+)", "/");
+		    pathStr = Regex.Replace(pathStr, "(?:\\\\+)|(?://+)", "/");
 		    if (pathStr.IndexOf("/", StringComparison.Ordinal) != pathStr.LastIndexOf("/", StringComparison.Ordinal))
 		        pathStr = pathStr.TrimEnd('/');
             if (!IsCorrectMyPath(pathStr))
