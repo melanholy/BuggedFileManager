@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 using FileManager.Domain.Infrastructure;
 using FileManager.Domain.Models;
 using FileManager.Domain.Models.Files;
+using FileManager.Domain.Models.Windows;
 using FileManager.GUI.Application;
 
 namespace FileManager.GUI.Controls
@@ -62,6 +63,17 @@ namespace FileManager.GUI.Controls
             {
                 
             }
+        }
+
+        public void CopyExample(MyFile source, MyFile destination)
+        {
+            var process = Manager.Move(source, true);
+
+            /* some stuff */
+
+            process.To(destination);
+
+            Manager.Move(source, false).To(destination);
         }
 
         public void GoUp()
