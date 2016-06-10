@@ -4,10 +4,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using FileManager.API;
 using FileManager.Domain.Infrastructure;
 using FileManager.Domain.Models;
 using FileManager.Domain.Models.Files;
-using FileManager.Domain.Models.Windows;
 using FileManager.GUI.Application;
 
 namespace FileManager.GUI.Controls
@@ -103,6 +103,11 @@ namespace FileManager.GUI.Controls
         {
             var fileContextMenu = new ContextMenu();
             var deleteItem = new MenuItem { Header = "Delete File" };
+
+            IMenuItem item;
+            if (Repo.TryGet(file.Extension, out item))
+                fileContextMenu.Items.Add(new MenuItem {Header = item.Text});
+
             fileContextMenu.Items.Add(deleteItem);
             return fileContextMenu;
         }
@@ -123,7 +128,12 @@ namespace FileManager.GUI.Controls
                 ContextMenu contextMenu = null;
                 if (file is TextFile)
                 {
-                    icon = FileIcon;
+                    var textfile = (TextFile) file;
+                    IFileIcon plugicon;
+                    if (Repo.TryGet(textfile.Extension, out plugicon))
+                        icon = new BitmapImage(plugicon.IconUri);
+                    else
+                        icon = FileIcon;
                     contextMenu = CreateFileContextMenu((TextFile)file);
                 }
                 if (file is Folder)

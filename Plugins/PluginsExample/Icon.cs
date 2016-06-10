@@ -11,8 +11,8 @@ namespace PluginsExample
 
         public Icon()
         {
-            Extensions = new List<string> { ".zip" };
-            IconUri = new Uri("zip.png");
+            Extensions = new List<string> { "zip" };
+            IconUri = new Uri(@"pack://siteoforigin:,,,/plugins/zip.png");
         }
     }
 }

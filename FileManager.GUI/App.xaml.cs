@@ -21,7 +21,7 @@ namespace FileManager.GUI
                 PluginsPath,
                 "*.dll",
                 SearchOption.TopDirectoryOnly
-            );
+            ).Select(Path.GetFullPath);
         }
 
         private void App_OnStartup(object sender, StartupEventArgs e)

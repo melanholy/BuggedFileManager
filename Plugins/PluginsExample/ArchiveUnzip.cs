@@ -12,7 +12,7 @@ namespace PluginsExample
         public ArchiveUnzip()
         {
             Text = "Unzip the archive";
-            Extensions = new List<string> { ".zip" };
+            Extensions = new List<string> { "zip" };
         }
         
         public void Click(string path, string filename, ClickPlace place)

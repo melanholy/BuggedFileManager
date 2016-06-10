@@ -4,14 +4,14 @@ using FileManager.API;
 
 namespace PluginsExample
 {
-    public class ArchiveZip : IMenuItem
+    public class ArchiveZip
     {
         public List<string> Extensions { get; }
         public string Text => "Add to zip archive";
 
         public ArchiveZip()
         {
-            Extensions = new List<string> { ".zip" };
+            Extensions = new List<string> { "zip" };
         }
 
         public void Click(string path, string filename, ClickPlace place)

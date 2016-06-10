@@ -13,22 +13,22 @@ namespace FileManager.GUI.Application
         public PluginRepo(Type[] knownPlugins)
         {
             Plugins = new Dictionary<Type, Dictionary<string, object>>();
+            foreach (var plugin in knownPlugins)
+                Plugins.Add(plugin, new Dictionary<string, object>());
             KnownPlugins = knownPlugins;
         }
 
         public void RegisterPlugins(IEnumerable<Assembly> assemblies)
         {
-            Plugins.Clear();
             foreach (var pluginFile in assemblies)
                 foreach (var pluginType in KnownPlugins)
                 {
-                    Plugins.Add(pluginType, new Dictionary<string, object>());
-                    var openers = pluginFile.GetTypes()
+                    var plugins = pluginFile.GetTypes()
                         .Where(x => x.GetInterface(pluginType.Name) != null)
                         .Select(Activator.CreateInstance);
-                    foreach (dynamic opener in openers)
-                        foreach (var extension in opener.Extensions)
-                            Plugins[pluginType].Add(extension, opener);
+                    foreach (dynamic plugin in plugins)
+                        foreach (var extension in plugin.Extensions)
+                            Plugins[pluginType].Add(extension, plugin);
                 }
         }
 
@@ -38,7 +38,8 @@ namespace FileManager.GUI.Application
             if (!KnownPlugins.Contains(typeof(TPlugin)))
                 return false;
             object result;
-            Plugins[typeof(TPlugin)].TryGetValue(extension, out result);
+            var d = Plugins[typeof(TPlugin)];
+            d.TryGetValue(extension, out result);
             plugin = (TPlugin) result;
             return plugin != null;
         }

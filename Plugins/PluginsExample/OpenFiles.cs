@@ -10,7 +10,7 @@ namespace PluginsExample
 
         public OpenFiles()
         {
-            Extensions = new List<string> { ".txt", ".jpg", ".png" };
+            Extensions = new List<string> { "txt", "jpg", "png" };
         }
 
         void IFileOpener.Open(string file)
